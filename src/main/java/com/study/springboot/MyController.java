@@ -27,12 +27,27 @@ public class MyController {
     @RequestMapping("/login")
 	public String loginForm() {
 
-		return "login/loginform";
+		return "membership/loginform";
+	}
+    @RequestMapping("/register")
+	public String register() {
+
+		return "membership/signupform";
 	}
 	@RequestMapping("/uploadForm")
 	public String uploadForm() {
 
 		return "FileUpload/fileForm";
+	}
+	@RequestMapping("/T")
+	public String TT() {
+
+		return "membership/member";
+	}
+	@RequestMapping("/a")
+	public String login() {
+
+		return "membership/register";
 	}
 	
 	@RequestMapping("/uploadOk")

@@ -98,7 +98,7 @@
 						<ul>
 							<li><a href="#"><i
 									class="fas fa-sign-in-alt"></i> 문의사항</a></li>
-							<li><a href="#"><i
+							<li><a href="/register"><i
 									class="fa fa-user-plus" aria-hidden="true"></i> 회원가입</a></li>
 							<li><a href="/login"><i
 									class="fas fa-sign-in-alt"></i> 로그인</a></li>
