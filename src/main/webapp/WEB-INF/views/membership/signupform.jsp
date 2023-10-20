@@ -187,7 +187,6 @@
 
 							<a class="dropdown-item ks4 fw4" href="#"
 								target="_self">후기/리뷰</a>
-
 						</ul></li>
 
 					<li class="nav-item dropdown megamenu-li"><a
@@ -359,15 +358,5 @@
     });
     </script>
 </div>
-
-
-<!-- } 하단 끝 -->
-
-<script>
-$(function() {
-    // 폰트 리사이즈 쿠키있으면 실행
-    font_resize("container", get_cookie("ck_font_resize_rmv_class"), get_cookie("ck_font_resize_add_class"));
-});
-</script>
 </body>
 </html>

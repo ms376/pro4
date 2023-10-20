@@ -101,7 +101,11 @@
 							<li><a href="/register"><i
 									class="fa fa-user-plus" aria-hidden="true"></i> 회원가입</a></li>
 							<li><a href="/login"><i
-									class="fas fa-sign-in-alt"></i> 로그인</a></li>
+									class="fas fa-sign-in-alt"></i> 적용후 로그인</a></li>
+							<li><a href="/a"><i
+									class="fas fa-sign-in-alt"></i> 적용전 로그인</a></li>
+							<li><a href="/profileC"><i
+									class="fas fa-sign-in-alt"></i> 적용전 정보수정</a></li>
 						</ul>
 					</div>
 				</div>

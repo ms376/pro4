@@ -39,6 +39,11 @@ public class MyController {
 
 		return "FileUpload/fileForm";
 	}
+	@RequestMapping("/write")
+	public String write() {
+		
+		return "write";
+	}
 	@RequestMapping("/T")
 	public String TT() {
 
@@ -48,6 +53,11 @@ public class MyController {
 	public String login() {
 
 		return "membership/register";
+	}
+	@RequestMapping("/profileC")
+	public String profileC() {
+
+		return "membership/profile";
 	}
 	
 	@RequestMapping("/uploadOk")
