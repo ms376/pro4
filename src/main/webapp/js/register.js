@@ -64,10 +64,10 @@ async function registerDoc() {
 		return;
 	}
 	// 숫자만 입력받기 위한 이벤트 리스너 추가
-document.getElementById('phone').addEventListener('input', function (e) {
-    // 입력된 값에서 숫자가 아닌 문자 제거
-    this.value = this.value.replace(/[^0-9]/g, '');
-});
+	document.getElementById('phone').addEventListener('input', function(e) {
+		// 입력된 값에서 숫자가 아닌 문자 제거
+		this.value = this.value.replace(/[^0-9]/g, '');
+	});
 	// 아이디/이메일 중복 체크 
 	const querySnapshot = await getDocs(collection(db, "members"));
 	querySnapshot.forEach((doc) => {
@@ -109,7 +109,7 @@ document.getElementById('phone').addEventListener('input', function (e) {
 
 	await setDoc(newRef, postData);
 	alert("회원가입이 성공했습니다.");
-        window.location.href = '/'; 
+	window.location.href = '/';
 }
 // 회원정보 조회
 async function selectmemberDoc() {
@@ -119,39 +119,35 @@ async function selectmemberDoc() {
 	snapshot.forEach((doc) => {
 		var data = doc.data();
 		console.log("DB에잘들어갔어");
-		appendMessage(data.id + " - " + data.pw + " : " + data.name + " : " + data.email + " : " + data.sex + " : " + data.nickname+ " : " + data.birth+ " : " + data.address+ " : " + data.rank+ " : " + data.interest+ " : " + data.phone);
+		appendMessage(data.id + " - " + data.pw + " : " + data.name + " : " + data.email + " : " + data.sex + " : " + data.nickname + " : " + data.birth + " : " + data.address + " : " + data.rank + " : " + data.interest + " : " + data.phone);
 	});
 }
 // 로그인
 async function loginDoc() {
-    console.log("ddd");
-    var id = $('#idInput').val();
-    var pw = $('#passwordInput').val();
-    try {
-        const querySnapshot = await getDocs(collection(db, "members"));
-         let loggedInUser = null; // 세션에 저장할 사용자 정보
-    
-        querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            if (data.id === id && data.pw === pw) {
-                 loggedInUser = doc.data; // 로그인 성공한 사용자 정보 저장
-                 sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
-                alert("로그인 성공! 사용자: " + data.id);
-                 window.location.href = '/';
-            }
-         });
-        if (!loggedIn) {
-            alert('로그인 실패: 아이디나 비밀번호를 정확히 입력해주세요.');
-        }
-    } catch (error) {
-        console.error("로그인 중 오류 발생: " + error);
-    }
-}
+	console.log("ddd");
+	var id = $('#idInput').val();
+	var pw = $('#passwordInput').val();
+	try {
+		const querySnapshot = await getDocs(collection(db, "members"));
+		let loggedInUser = null; // 세션에 저장할 사용자 정보
 
-async function logoutDoc(){
-	
+		querySnapshot.forEach((doc) => {
+			const data = doc.data();
+			if (data.id === id && data.pw === pw) {
+				loggedInUser = doc.data; // 로그인 성공한 사용자 정보 저장
+				sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+				alert("로그인 성공! 사용자: " + data.id);
+				window.location.href = '/';
+			}
+		});
+		if (!loggedIn) {
+			alert('로그인 실패: 아이디나 비밀번호를 정확히 입력해주세요.');
+		}
+	} catch (error) {
+		console.error("로그인 중 오류 발생: " + error);
+	}
 }
-
+// 로그인 세션스토리지 초기화(로그아웃)
 function appendMessage(msg) {
 	$('#chatMessageArea').append(msg + "<br>");
 	var chatAreaHeight = $('#chatArea').height();
@@ -164,5 +160,4 @@ $(document).ready(function() {
 	$('#select').click(function() { selectmemberDoc(); });
 	$('#write').click(function() { registerDoc(); });
 	$('#login').click(function() { loginDoc(); });
-	$('#logout').click(function() { logoutDoc(); });
 });

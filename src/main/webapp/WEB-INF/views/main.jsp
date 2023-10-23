@@ -94,6 +94,16 @@
 									회원가입</a></li>
 							<li><a href="/prf"><i class="fas fa-sign-in-alt"></i>
 									적용전 정보수정</a></li>
+							<script>
+								// 로그인 세션스토리지 초기화(로그아웃)
+								async
+								function logoutDoc() {
+									sessionStorage.clear();
+									window.location.href = '/';
+								}
+							</script>
+							<li><a href="javascript:void(0);" onclick="logoutDoc()"><i class="fas fa-sign-in-alt"></i>
+									적용전 로그아웃</a></li>
 						</ul>
 					</div>
 				</div>
@@ -222,24 +232,29 @@
 				</h2>
 				<script>
 					// 사용자 정보 출력을 함수로 감싸서 문서 로딩 후 실행하도록 합니다.
-					document.addEventListener("DOMContentLoaded", function() {
-						var userData = sessionStorage.getItem("user");
-						// user 데이터가 존재하는지 확인합니다.
-						if (userData) {
-							// JSON 파싱을 수행합니다.
-							var user = JSON.parse(userData);
+					document
+							.addEventListener(
+									"DOMContentLoaded",
+									function() {
+										var userData = sessionStorage
+												.getItem("user");
+										// user 데이터가 존재하는지 확인합니다.
+										if (userData) {
+											// JSON 파싱을 수행합니다.
+											var user = JSON.parse(userData);
 
-							// user 객체에서 id와 pw 값을 가져옵니다.
-							var id = user.id;
-							var nickname = user.nickname;
+											// user 객체에서 id와 pw 값을 가져옵니다.
+											var id = user.id;
+											var nickname = user.nickname;
 
-							// 가져온 id와 pw 값을 출력합니다.
-							document.getElementById("lid").textContent = id;
-							document.getElementById("lnick").textContent = nickname;
-						} else {
-							console.log("세션 스토리지에서 user 데이터를 찾을 수 없습니다.");
-						}
-					});
+											// 가져온 id와 pw 값을 출력합니다.
+											document.getElementById("lid").textContent = id;
+											document.getElementById("lnick").textContent = nickname;
+										} else {
+											console
+													.log("세션 스토리지에서 user 데이터를 찾을 수 없습니다.");
+										}
+									});
 				</script>
 
 				<div>
