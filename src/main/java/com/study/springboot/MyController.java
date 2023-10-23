@@ -24,6 +24,11 @@ public class MyController {
     public  String root() throws Exception{
         return "main";
     }
+    @RequestMapping("/wr")
+	public String wr() {
+
+		return "write";
+	}
     @RequestMapping("/login")
 	public String loginForm() {
 

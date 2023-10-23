@@ -14,7 +14,7 @@ import { getFirestore, collection, getDocs, setDoc, doc }
 	measurementId: "G-LMXETWQJGT"
   };
   var app = initializeApp(firebaseConfig);
-var db = getFirestore(app);
+  var db = getFirestore(app);
 
   async function writeDoc() {
     var title = $('#title').val();

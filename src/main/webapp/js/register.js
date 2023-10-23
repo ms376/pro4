@@ -127,26 +127,29 @@ async function loginDoc() {
 	console.log("ddd");
 	var id = $('#idInput').val();
 	var pw = $('#passwordInput').val();
+	let loggedInUser = null; // 세션에 저장할 사용자 정보
+
 	try {
 		const querySnapshot = await getDocs(collection(db, "members"));
-		let loggedInUser = null; // 세션에 저장할 사용자 정보
 
 		querySnapshot.forEach((doc) => {
 			const data = doc.data();
 			if (data.id === id && data.pw === pw) {
-				loggedInUser = doc.data; // 로그인 성공한 사용자 정보 저장
+				loggedInUser = data; // 로그인 성공한 사용자 정보 저장
 				sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
 				alert("로그인 성공! 사용자: " + data.id);
 				window.location.href = '/';
 			}
 		});
-		if (!loggedIn) {
+
+		if (!loggedInUser) {
 			alert('로그인 실패: 아이디나 비밀번호를 정확히 입력해주세요.');
 		}
 	} catch (error) {
 		console.error("로그인 중 오류 발생: " + error);
 	}
 }
+
 // 로그인 세션스토리지 초기화(로그아웃)
 function appendMessage(msg) {
 	$('#chatMessageArea').append(msg + "<br>");
