@@ -54,10 +54,15 @@ public class MyController {
 
 		return "membership/register";
 	}
+	@RequestMapping("/prf")
+	public String profile() {
+
+		return "membership/profile";
+	}
 	@RequestMapping("/profileC")
 	public String profileC() {
 
-		return "membership/profile";
+		return "membership/profile2";
 	}
 	
 	@RequestMapping("/uploadOk")

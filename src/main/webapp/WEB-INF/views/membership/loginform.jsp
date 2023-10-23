@@ -79,12 +79,11 @@
 						</div>
 					</div>
 					<div class="form-group margin-bottom-xxxl">
-						<button type="button" class="btn btn-primary btn-block"
-							 id="login">로그인</button>
+						<button type="button" class="btn btn-primary btn-block" id="login">로그인</button>
 						<br>
 						<div class="checkbox checkbox-styled"></div>
 					</div>
-					
+
 					<div class="form-group">
 						<a href="#" class="btn btn-naver btn-block"><i
 							class="fab fab-naver-alt"></i> 로그인</a>
@@ -105,7 +104,6 @@
 						</a>
 					</p>
 				</div>
-
 			</div>
 		</div>
 	</section>

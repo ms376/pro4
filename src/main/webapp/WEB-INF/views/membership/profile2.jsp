@@ -43,25 +43,33 @@ label {
 				<div>
 					<img class="center animated rollIn" src="img/a2.jpg" alt="avatar">
 					<br>
+					<button class="change-button">사진 변경하기</button>
 				</div>
 				<div class="profile-info">
 					<label for="username">아이디:</label>
 					<p>ID</p>
 					<label for="fullname">실명:</label>
 					<p>홍길동</p>
-					<label for="birthdate">생일:</label>
-					<p>09.30</p>
-					<label for="address">주소:</label>
-					<p>서울시마포구마포대로는무너졋냐</p>
+					<label for="birthdate">생일:</label> <input type="text"
+						id="birthdate" value="생일 정보">
+					<button class="change-button">변경하기</button>
+
+					<label for="address">주소:</label> <input type="text" id="address"
+						value="주소 정보">
+					<button class="change-button">변경하기</button>
+
 					<label for="phone">전화번호:</label>
-					<p>010-1234-1234</p>
-					<label for="location">지역:</label>
-					<p>은평구(지역)</p>
-					<label for="interests">관심사항:</label>
-					<p>관심사항(게임)</p>
+					<p>010-1236-1234</p>
+					<label for="location">지역:</label> <input type="text" id="location"
+						value="지역 정보">
+					<button class="change-button">변경하기</button>
+					<label for="interests">관심사항:</label> <input type="text"
+						id="interests" value="관심사항 정보">
+					<button class="change-button">변경하기</button>
 				</div>
-				<a href="/profileC">정보수정</a>
-				<button class="change-button">회원 탈퇴</button>
+				<br>
+				<br>
+				<button>돌아가기</button>
 				<!-- 					<div class="name"> -->
 				<!-- 						이름: -->
 				<%-- 						<%=session.getAttribute("UserName")%> --%>

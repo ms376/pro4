@@ -127,20 +127,19 @@ async function loginDoc() {
     console.log("ddd");
     var id = $('#idInput').val();
     var pw = $('#passwordInput').val();
-    
     try {
         const querySnapshot = await getDocs(collection(db, "members"));
-        let loggedIn = false; // 사용자가 로그인한지 확인하는 플래그
+         let loggedInUser = null; // 세션에 저장할 사용자 정보
     
         querySnapshot.forEach((doc) => {
             const data = doc.data();
             if (data.id === id && data.pw === pw) {
+                 loggedInUser = doc.data; // 로그인 성공한 사용자 정보 저장
+                 sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
                 alert("로그인 성공! 사용자: " + data.id);
-                sessionStorage.setItem('user', JSON.stringify(data)); // 수정해야함
-                loggedIn = true; // 사용자가 로그인 성공한 경우 플래그를 설정
                  window.location.href = '/';
             }
-        });
+         });
         if (!loggedIn) {
             alert('로그인 실패: 아이디나 비밀번호를 정확히 입력해주세요.');
         }

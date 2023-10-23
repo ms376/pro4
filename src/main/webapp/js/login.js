@@ -123,6 +123,9 @@ const querySnapshot = getDocs(collection(db, "members"));
     .then((userCredential) => {
       // 로그인 성공 시의 동작
       const user = userCredential.user;
+      
+      
+      
       alert('로그인 성공! 사용자: ' + user.id);
       // 여기에서 다음 페이지로 이동하거나 필요한 동작을 수행할 수 있습니다.
     })

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,26 +9,13 @@
 <meta http-equiv="imagetoolbar" content="no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>프로젝트3</title>
+<script type="module" src="../js/register.js"></script>
 <link rel="stylesheet"
 	href="http://smy.kr/theme/theme_wide_17/css/default.css?ver=220620">
 <link rel="stylesheet"
 	href="http://smy.kr/js/font-awesome/css/font-awesome.min.css?ver=220620">
 <link rel="stylesheet"
 	href="http://smy.kr/theme/theme_wide_17/skin/latest/basic_main_one/style.css?ver=220620">
-<script>
-	var g5_url = "http://smy.kr";
-	var g5_bbs_url = "http://smy.kr/bbs";
-	var g5_is_member = "";
-	var g5_is_admin = "";
-	var g5_is_mobile = "";
-	var g5_bo_table = "";
-	var g5_sca = "";
-	var g5_editor = "";
-	var g5_cookie_domain = "";
-	var g5_theme_shop_url = "http://smy.kr/theme/theme_wide_17/shop";
-	var g5_shop_url = "http://smy.kr/shop";
-</script>
-
 <link
 	href="//fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800|Noto+Sans+KR:100,300,400,500,700,900|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"
 	rel="stylesheet">
@@ -96,16 +85,15 @@
 					</div>
 					<div id="tnb_index">
 						<ul>
-							<li><a href="#"><i
-									class="fas fa-sign-in-alt"></i> 문의사항</a></li>
-							<li><a href="/register"><i
-									class="fa fa-user-plus" aria-hidden="true"></i> 회원가입</a></li>
-							<li><a href="/login"><i
-									class="fas fa-sign-in-alt"></i> 적용후 로그인</a></li>
-							<li><a href="/a"><i
-									class="fas fa-sign-in-alt"></i> 적용전 로그인</a></li>
-							<li><a href="/profileC"><i
-									class="fas fa-sign-in-alt"></i> 적용전 정보수정</a></li>
+							<li><a href="#"><i class="fas fa-sign-in-alt"></i> 문의사항</a></li>
+							<li><a href="/register"><i class="fa fa-user-plus"
+									aria-hidden="true"></i> 회원가입</a></li>
+							<li><a href="/login"><i class="fas fa-sign-in-alt"></i>
+									로그인</a></li>
+							<li><a href="/a"><i class="fas fa-sign-in-alt"></i> 적용전
+									회원가입</a></li>
+							<li><a href="/prf"><i class="fas fa-sign-in-alt"></i>
+									적용전 정보수정</a></li>
 						</ul>
 					</div>
 				</div>
@@ -133,78 +121,64 @@
 				<ul class="navbar-nav ml-auto">
 
 					<li class="nav-item dropdown megamenu-li"><a
-						class="nav-link dropdown-toggle ks4 f15"
-						href="#" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-						target="_self"> 동취미 </a> <!-- 서브 -->
+						class="nav-link dropdown-toggle ks4 f15" href="#"
+						id="navbarDropdownBlog" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false" target="_self"> 동취미
+					</a> <!-- 서브 -->
 						<ul class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item ks4 fw4"
-								href="#" target="_self">
-								소개</a>
-							<a class="dropdown-item ks4 fw4"
-								href="#" target="_self">찾아오시는
+							<a class="dropdown-item ks4 fw4" href="#" target="_self"> 소개</a>
+							<a class="dropdown-item ks4 fw4" href="#" target="_self">찾아오시는
 								길</a>
-							<a class="dropdown-item ks4 fw4"
-								href="#" target="_self">공지사항</a>
+							<a class="dropdown-item ks4 fw4" href="#" target="_self">공지사항</a>
 						</ul></li>
 					<li class="nav-item dropdown megamenu-li"><a
-						class="nav-link dropdown-toggle ks4 f15"
-						href="#" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-						target="_self"> 게시판1 </a> <!-- 서브 -->
+						class="nav-link dropdown-toggle ks4 f15" href="#"
+						id="navbarDropdownBlog" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false" target="_self">
+							게시판1 </a> <!-- 서브 -->
 						<ul class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item ks4 fw4"
-								href="#" target="_self">세부1</a>
-							<a class="dropdown-item ks4 fw4" href="#"
-								target="_self">세부2</a>
+							<a class="dropdown-item ks4 fw4" href="#" target="_self">세부1</a>
+							<a class="dropdown-item ks4 fw4" href="#" target="_self">세부2</a>
 						</ul></li>
 					<li class="nav-item dropdown megamenu-li"><a
-					class="nav-link dropdown-toggle ks4 f15"
-					href="#" id="navbarDropdownBlog"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-					target="_self"> 게시판2 </a> <!-- 서브 -->
-					<ul class="dropdown-menu dropdown-menu-right"
-						aria-labelledby="navbarDropdownPortfolio">
-						<a class="dropdown-item ks4 fw4"
-							href="#" target="_self">세부1</a>
-						<a class="dropdown-item ks4 fw4" href="#"
-							target="_self">세부2</a>
-					</ul></li>
-					<li class="nav-item dropdown megamenu-li"><a
-						class="nav-link dropdown-toggle ks4 f15"
-						href="#" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-						target="_self"> 자유게시판 </a> <!-- 서브 -->
+						class="nav-link dropdown-toggle ks4 f15" href="#"
+						id="navbarDropdownBlog" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false" target="_self">
+							게시판2 </a> <!-- 서브 -->
 						<ul class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item ks4 fw4" href="#"
-								target="_self">잡담</a>
+							<a class="dropdown-item ks4 fw4" href="#" target="_self">세부1</a>
+							<a class="dropdown-item ks4 fw4" href="#" target="_self">세부2</a>
+						</ul></li>
+					<li class="nav-item dropdown megamenu-li"><a
+						class="nav-link dropdown-toggle ks4 f15" href="#"
+						id="navbarDropdownBlog" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false" target="_self">
+							자유게시판 </a> <!-- 서브 -->
+						<ul class="dropdown-menu dropdown-menu-right"
+							aria-labelledby="navbarDropdownPortfolio">
+							<a class="dropdown-item ks4 fw4" href="#" target="_self">잡담</a>
 
-							<a class="dropdown-item ks4 fw4" href="#"
-								target="_self">홍보</a>
+							<a class="dropdown-item ks4 fw4" href="#" target="_self">홍보</a>
 
-							<a class="dropdown-item ks4 fw4" href="#"
-								target="_self">후기/리뷰</a>
+							<a class="dropdown-item ks4 fw4" href="#" target="_self">후기/리뷰</a>
 
 						</ul></li>
 
 					<li class="nav-item dropdown megamenu-li"><a
-						class="nav-link dropdown-toggle ks4 f15"
-						href="#" id="navbarDropdownBlog"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-						target="_self"> Myclub </a> <!-- 서브 -->
+						class="nav-link dropdown-toggle ks4 f15" href="#"
+						id="navbarDropdownBlog" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false" target="_self">
+							Myclub </a> <!-- 서브 -->
 						<ul class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item ks4 fw4" href="#"
-								target="_self">찜한동아리</a>
+							<a class="dropdown-item ks4 fw4" href="#" target="_self">찜한동아리</a>
 
-							<a class="dropdown-item ks4 fw4" href="#"
-								target="_self">게시판4세부2</a>
+							<a class="dropdown-item ks4 fw4" href="#" target="_self">게시판4세부2</a>
 
-							<a class="dropdown-item ks4 fw4" href="#"
-								target="_self">게시판4세부3</a>
+							<a class="dropdown-item ks4 fw4" href="#" target="_self">게시판4세부3</a>
 						</ul></li>
 
 					<li class="nav-item dropdown login"><a
@@ -214,10 +188,9 @@
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
 
-							<a class="dropdown-item" href="#">새글</a>
-							<a class="dropdown-item" href="#">1:1문의</a>
-							<a class="dropdown-item" href="#">로그인</a>
-							<a class="dropdown-item" href="#">회원가입</a>
+							<a class="dropdown-item" href="#">새글</a> <a class="dropdown-item"
+								href="#">1:1문의</a> <a class="dropdown-item" href="#">로그인</a> <a
+								class="dropdown-item" href="#">회원가입</a>
 						</div></li>
 				</ul>
 			</div>
@@ -245,8 +218,39 @@
 		<div class="container">
 			<div class="center-heading">
 				<h2 class="en1">
-					프로젝트3<strong> 동아리 모음</strong>
+					프로젝트3<strong> 동아리 모음</strong>>
 				</h2>
+				<script>
+					// 사용자 정보 출력을 함수로 감싸서 문서 로딩 후 실행하도록 합니다.
+					document.addEventListener("DOMContentLoaded", function() {
+						var userData = sessionStorage.getItem("user");
+						// user 데이터가 존재하는지 확인합니다.
+						if (userData) {
+							// JSON 파싱을 수행합니다.
+							var user = JSON.parse(userData);
+
+							// user 객체에서 id와 pw 값을 가져옵니다.
+							var id = user.id;
+							var nickname = user.nickname;
+
+							// 가져온 id와 pw 값을 출력합니다.
+							document.getElementById("lid").textContent = id;
+							document.getElementById("lnick").textContent = nickname;
+						} else {
+							console.log("세션 스토리지에서 user 데이터를 찾을 수 없습니다.");
+						}
+					});
+				</script>
+
+				<div>
+					<p>
+						사용자 아이디:<span id="lid"></span>
+					</p>
+					<p>
+						사용자 닉네임:<span id="lnick"></span>
+					</p>
+					<!-- 필요한 다른 사용자 정보도 동일한 방식으로 표시 가능합니다. -->
+				</div>
 				<span class="center-line"></span>
 			</div>
 			<div class="row">
@@ -273,8 +277,8 @@
 						<strong>테니스동아리 팀 : 소닉 소개입니다.</strong>
 					</p>
 					<p class="ks4">
-						<a href="https://www.youtube.com/watch?v=Ov6fK54NmWs" target="_blank">유튜브
-							바로가기</a>
+						<a href="https://www.youtube.com/watch?v=Ov6fK54NmWs"
+							target="_blank">유튜브 바로가기</a>
 					</p>
 					<p class="ks4">지기티비 복귀하나요???</p>
 				</div>
@@ -320,33 +324,22 @@
 					<div class="row">
 						<div class="col-md-12 main_one_title ks4">게시판1</div>
 					</div>
-					<a href="#"
-						class="one_more"><span class="sound_only">게시판1세부</span><i
+					<a href="#" class="one_more"><span class="sound_only">게시판1세부</span><i
 						class="fa fa-plus" aria-hidden="true"
 						style="font-size: 22px; line-height: 1px;"></i><span
 						class="sound_only"> 더보기</span></a>
 					<div class="lat_list_one">
 						<ul>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리1</a> <span
+							<li class="ks4"><a href="#"> 동아리동아리동아리1</a> <span
 								class="lt_date hidden-xs hidden-sm">06-16</span></li>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리1</a> <span
+							<li class="ks4"><a href="#"> 동아리동아리동아리1</a> <span
 								class="lt_date hidden-xs hidden-sm">05-18</span></li>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리1</a> <span class="lt_date hidden-xs hidden-sm">03-13</span>
-							</li>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리1</a> <span
+							<li class="ks4"><a href="#"> 동아리동아리동아리1</a> <span
 								class="lt_date hidden-xs hidden-sm">03-13</span></li>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리1</a> <span class="lt_date hidden-xs hidden-sm">02-15</span>
-							</li>
+							<li class="ks4"><a href="#"> 동아리동아리동아리1</a> <span
+								class="lt_date hidden-xs hidden-sm">03-13</span></li>
+							<li class="ks4"><a href="#"> 동아리동아리동아리1</a> <span
+								class="lt_date hidden-xs hidden-sm">02-15</span></li>
 						</ul>
 
 					</div>
@@ -389,27 +382,17 @@
 						class="sound_only"> 더보기</span></a>
 					<div class="lat_list_one">
 						<ul>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리2</a> <span
+							<li class="ks4"><a href="#"> 동아리동아리동아리2</a> <span
 								class="lt_date hidden-xs hidden-sm">10-13</span></li>
 							<li class="ks4"><span class="hot_icon">H<span
-									class="sound_only">인기글</span></span><a
-								href="#">
-									인기글표시--</a> <span
+									class="sound_only">인기글</span></span><a href="#"> 인기글표시--</a> <span
 								class="lt_date hidden-xs hidden-sm">10-06</span></li>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리2</a> <span class="lt_date hidden-xs hidden-sm">09-27</span>
-							</li>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리2</a> <span class="lt_date hidden-xs hidden-sm">09-27</span>
-							</li>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리2</a> <span class="lt_date hidden-xs hidden-sm">09-27</span>
-							</li>
+							<li class="ks4"><a href="#"> 동아리동아리동아리2</a> <span
+								class="lt_date hidden-xs hidden-sm">09-27</span></li>
+							<li class="ks4"><a href="#"> 동아리동아리동아리2</a> <span
+								class="lt_date hidden-xs hidden-sm">09-27</span></li>
+							<li class="ks4"><a href="#"> 동아리동아리동아리2</a> <span
+								class="lt_date hidden-xs hidden-sm">09-27</span></li>
 						</ul>
 
 					</div>
@@ -451,33 +434,22 @@
 					<div class="row">
 						<div class="col-md-12 main_one_title ks4">게시판3</div>
 					</div>
-					<a href="#"
-						class="one_more"><span class="sound_only">게시판3</span><i
+					<a href="#" class="one_more"><span class="sound_only">게시판3</span><i
 						class="fa fa-plus" aria-hidden="true"
 						style="font-size: 22px; line-height: 1px;"></i><span
 						class="sound_only"> 더보기</span></a>
 					<div class="lat_list_one">
 						<ul>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리3</a> <span class="lt_date hidden-xs hidden-sm">09-22</span>
-							</li>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리3</a> <span class="lt_date hidden-xs hidden-sm">09-22</span>
-							</li>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리3</a> <span class="lt_date hidden-xs hidden-sm">09-22</span>
-							</li>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리3</a> <span
+							<li class="ks4"><a href="#"> 동아리동아리동아리3</a> <span
+								class="lt_date hidden-xs hidden-sm">09-22</span></li>
+							<li class="ks4"><a href="#"> 동아리동아리동아리3</a> <span
+								class="lt_date hidden-xs hidden-sm">09-22</span></li>
+							<li class="ks4"><a href="#"> 동아리동아리동아리3</a> <span
+								class="lt_date hidden-xs hidden-sm">09-22</span></li>
+							<li class="ks4"><a href="#"> 동아리동아리동아리3</a> <span
 								class="lt_date hidden-xs hidden-sm">09-04</span></li>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리3</a> <span class="lt_date hidden-xs hidden-sm">09-01</span>
-							</li>
+							<li class="ks4"><a href="#"> 동아리동아리동아리3</a> <span
+								class="lt_date hidden-xs hidden-sm">09-01</span></li>
 						</ul>
 
 					</div>
@@ -513,32 +485,22 @@
 					<div class="row">
 						<div class="col-md-12 main_one_title ks4">게시판4</div>
 					</div>
-					<a href="#"
-						class="one_more"><span class="sound_only">게시판4</span><i
+					<a href="#" class="one_more"><span class="sound_only">게시판4</span><i
 						class="fa fa-plus" aria-hidden="true"
 						style="font-size: 22px; line-height: 1px;"></i><span
 						class="sound_only"> 더보기</span></a>
 					<div class="lat_list_one">
 						<ul>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리4</a> <span class="lt_date hidden-xs hidden-sm">09-27</span>
-							</li>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리4</a> <span class="lt_date hidden-xs hidden-sm">09-01</span></li>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리4</a> <span class="lt_date hidden-xs hidden-sm">08-11</span>
-							</li>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리4</a> <span class="lt_date hidden-xs hidden-sm">07-21</span>
-							</li>
-							<li class="ks4"><a
-								href="#">
-									동아리동아리동아리4</a> <span class="lt_date hidden-xs hidden-sm">06-16</span>
-							</li>
+							<li class="ks4"><a href="#"> 동아리동아리동아리4</a> <span
+								class="lt_date hidden-xs hidden-sm">09-27</span></li>
+							<li class="ks4"><a href="#"> 동아리동아리동아리4</a> <span
+								class="lt_date hidden-xs hidden-sm">09-01</span></li>
+							<li class="ks4"><a href="#"> 동아리동아리동아리4</a> <span
+								class="lt_date hidden-xs hidden-sm">08-11</span></li>
+							<li class="ks4"><a href="#"> 동아리동아리동아리4</a> <span
+								class="lt_date hidden-xs hidden-sm">07-21</span></li>
+							<li class="ks4"><a href="#"> 동아리동아리동아리4</a> <span
+								class="lt_date hidden-xs hidden-sm">06-16</span></li>
 						</ul>
 
 					</div>
@@ -547,8 +509,7 @@
 		</div>
 	</div>
 
-	<div class="row padding-top-20">
-	</div>
+	<div class="row padding-top-20"></div>
 	<div class="d-none d-sm-block margin-top-30"></div>
 	</div>
 	<div class="margin-bottom-40"></div>
@@ -563,11 +524,9 @@
 					<!-- image or text  -->
 					<p class="ks2 f12"></p>
 					<p class="ks2 f12">
-						<i class="far fa-building"></i> 주소: 서울특별시 마포구 마포대로는 무너졌냐<br />
-
-						<i class="fas fa-phone"></i> 연락처 : 010-3865-4323 <br />
-
-						<i class="fas fa-fax"></i> 팩스번호 : 000-0000-0000<br />
+						<i class="far fa-building"></i> 주소: 서울특별시 마포구 마포대로는 무너졌냐<br /> <i
+							class="fas fa-phone"></i> 연락처 : 010-3865-4323 <br /> <i
+							class="fas fa-fax"></i> 팩스번호 : 000-0000-0000<br />
 					</p>
 
 				</div>
