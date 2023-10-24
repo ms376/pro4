@@ -40,59 +40,70 @@ label {
 				<div style="text-align: center;">
 					<h3>내정보</h3>
 				</div>
+				<script>
+					// 사용자 정보 출력을 함수로 감싸서 문서 로딩 후 실행하도록 합니다.
+					document.addEventListener(
+									"DOMContentLoaded",
+									function() {
+										var userData = sessionStorage
+												.getItem("loggedInUser");
+										// user 데이터가 존재하는지 확인합니다.
+										if (userData) {
+											// JSON 파싱을 수행합니다.
+											var user = JSON.parse(userData);
+
+											// user 객체에서 id와 pw 값을 가져옵니다.
+											var id = user.id;
+											var name = user.name;
+											var nickname = user.nickname;
+											var address = user.address;
+											var detailAddress = user.detailAddress;
+											var birth = user.birth;
+											var interest = user.interest;
+											var email = user.email;
+											var phone = user.phone;
+											var sex = user.sex;
+											var rank = user.rank;
+
+											// 가져온 id와 pw 값을 출력합니다.
+											document.getElementById("lid").textContent = id;
+											document.getElementById("lname").textContent = name;
+											document.getElementById("lnick").textContent = nickname;
+											document.getElementById("laddr").textContent = address;
+											document.getElementById("laddrd").textContent = detailAddress;
+											document.getElementById("lbirth").innerText = birth;
+											document.getElementById("linterest").textContent = interest;
+											document.getElementById("lemail").innerText = email;
+											document.getElementById("lphone").innerText = phone;
+											document.getElementById("lsex").innerText = sex;
+											document.getElementById("lrank").innerText = rank;
+										} else {
+											console.log("세션 스토리지에서 user 데이터를 찾을 수 없습니다.");
+										}
+									});
+				</script>
 				<div>
 					<img class="center animated rollIn" src="img/a2.jpg" alt="avatar">
 					<br>
 					<button class="change-button">사진 변경하기</button>
 				</div>
 				<div class="profile-info">
-					<label for="username">아이디:</label>
-					<p>ID</p>
-					<label for="fullname">실명:</label>
-					<p>홍길동</p>
-					<label for="birthdate">생일:</label> <input type="text"
-						id="birthdate" value="생일 정보">
-					<button class="change-button">변경하기</button>
-
-					<label for="address">주소:</label> <input type="text" id="address"
-						value="주소 정보">
-					<button class="change-button">변경하기</button>
-
-					<label for="phone">전화번호:</label>
-					<p>010-1236-1234</p>
-					<label for="location">지역:</label> <input type="text" id="location"
-						value="지역 정보">
-					<button class="change-button">변경하기</button>
-					<label for="interests">관심사항:</label> <input type="text"
-						id="interests" value="관심사항 정보">
-					<button class="change-button">변경하기</button>
-				</div>
+					<label for="username">아이디: <span id="lid"></span></label>
+<!-- 					<input>새 비밀번호: <span id="lpw"></span></input> -->
+					<label for="fullname">실명: <span id="lname"></span></label>
+					이름:<input type="text" name="name" id="lname"><br/>
+					<label for="fullname">닉네임: <span id="lnick"></span></label>
+					<label for="address">주소: <span id="laddr"></span> <span id="laddrd"></span></label>
+<!-- 					<input>생일: <span id="lbirth"></span></input> -->
+					<br>관심사항: <input id="linterest"></input>
+					<label for="email">이메일: <span id="lemail"></span></label>
+					<label for="phone">전화번호: <span id="lphone"></span></label>
+					<label for="sex">성별: <span id="lsex"></span></label>
+					<label for="rank">등급: <span id="lrank"></span></label>
+				</div><br>
 				<br>
 				<br>
 				<button>돌아가기</button>
-				<!-- 					<div class="name"> -->
-				<!-- 						이름: -->
-				<%-- 						<%=session.getAttribute("UserName")%> --%>
-				<!-- 					</div> -->
-				<!-- 					<p class="subtitle"> -->
-				<!-- 						아이디: -->
-				<%-- 						<%=session.getAttribute("UserId")%></p> --%>
-				<!-- 					<p class="subtitle"> -->
-				<!-- 						가입일: -->
-				<%-- 						<%=session.getAttribute("UserRegidate")%></p> --%>
-				<!-- 					<br /> -->
-				<!-- 					<p class="location"> -->
-				<!-- 						<i class="btn"> </i><a href="../board/updtm.jsp" target="_blank"> -->
-				<!-- 							회원정보 수정</a> -->
-				<!-- 					</p> -->
-				<!-- 					<p class="location"> -->
-				<!-- 						<i class="btn"> </i><a href="../board/main.jsp" target="_blank"> -->
-				<!-- 							돌아 가기</a> -->
-				<!-- 					</p> -->
-				<!-- 					<p class="location"> -->
-				<!-- 						<i class="btn"> </i><a href="../board/outm.jsp" target="_blank"> -->
-				<!-- 							회원 탈퇴</a> -->
-				<!-- 					</p> -->
 				<div class="form-group" style="text-align: center;"></div>
 			</div>
 		</div>

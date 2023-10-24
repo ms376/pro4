@@ -44,47 +44,62 @@ label {
 					<img class="center animated rollIn" src="img/a2.jpg" alt="avatar">
 					<br>
 				</div>
+				<script>
+					// 사용자 정보 출력을 함수로 감싸서 문서 로딩 후 실행하도록 합니다.
+					document.addEventListener(
+									"DOMContentLoaded",
+									function() {
+										var userData = sessionStorage
+												.getItem("loggedInUser");
+										// user 데이터가 존재하는지 확인합니다.
+										if (userData) {
+											// JSON 파싱을 수행합니다.
+											var user = JSON.parse(userData);
+
+											// user 객체에서 id와 pw 값을 가져옵니다.
+											var id = user.id;
+											var name = user.name;
+											var nickname = user.nickname;
+											var address = user.address;
+											var detailAddress = user.detailAddress;
+											var birth = user.birth;
+											var interest = user.interest;
+											var email = user.email;
+											var phone = user.phone;
+											var sex = user.sex;
+											var rank = user.rank;
+
+											// 가져온 id와 pw 값을 출력합니다.
+											document.getElementById("lid").textContent = id;
+											document.getElementById("lname").textContent = name;
+											document.getElementById("lnick").textContent = nickname;
+											document.getElementById("laddr").textContent = address;
+											document.getElementById("laddrd").textContent = detailAddress;
+											document.getElementById("lbirth").textContent = birth;
+											document.getElementById("linterest").textContent = interest;
+											document.getElementById("lemail").innerText = email;
+											document.getElementById("lphone").innerText = phone;
+											document.getElementById("lsex").innerText = sex;
+											document.getElementById("lrank").innerText = rank;
+										} else {
+											console.log("세션 스토리지에서 user 데이터를 찾을 수 없습니다.");
+										}
+									});
+				</script>
 				<div class="profile-info">
-					<label for="username">아이디:</label>
-					<p>ID</p>
-					<label for="fullname">실명:</label>
-					<p>홍길동</p>
-					<label for="birthdate">생일:</label>
-					<p>09.30</p>
-					<label for="address">주소:</label>
-					<p>서울시마포구마포대로는무너졋냐</p>
-					<label for="phone">전화번호:</label>
-					<p>010-1234-1234</p>
-					<label for="location">지역:</label>
-					<p>은평구(지역)</p>
-					<label for="interests">관심사항:</label>
-					<p>관심사항(게임)</p>
-				</div>
+					<label for="username">아이디: <span id="lid"></span></label>
+					<label for="fullname">실명: <span id="lname"></span></label>
+					<label for="fullname">닉네임: <span id="lnick"></span></label>
+					<label for="address">주소: <span id="laddr"></span> <span id="laddrd"></span></label>
+					<label for="birthdate">생일: <span id="lbirth"></span></label>
+					<label for="interest">관심사항: <span id="linterest"></span></label>
+					<label for="email">이메일: <span id="lemail"></span></label>
+					<label for="phone">전화번호: <span id="lphone"></span></label>
+					<label for="sex">성별: <span id="lsex"></span></label>
+					<label for="rank">등급: <span id="lrank"></span></label>
+				</div><br>
 				<a href="/profileC">정보수정</a>
 				<button class="change-button">회원 탈퇴</button>
-				<!-- 					<div class="name"> -->
-				<!-- 						이름: -->
-				<%-- 						<%=session.getAttribute("UserName")%> --%>
-				<!-- 					</div> -->
-				<!-- 					<p class="subtitle"> -->
-				<!-- 						아이디: -->
-				<%-- 						<%=session.getAttribute("UserId")%></p> --%>
-				<!-- 					<p class="subtitle"> -->
-				<!-- 						가입일: -->
-				<%-- 						<%=session.getAttribute("UserRegidate")%></p> --%>
-				<!-- 					<br /> -->
-				<!-- 					<p class="location"> -->
-				<!-- 						<i class="btn"> </i><a href="../board/updtm.jsp" target="_blank"> -->
-				<!-- 							회원정보 수정</a> -->
-				<!-- 					</p> -->
-				<!-- 					<p class="location"> -->
-				<!-- 						<i class="btn"> </i><a href="../board/main.jsp" target="_blank"> -->
-				<!-- 							돌아 가기</a> -->
-				<!-- 					</p> -->
-				<!-- 					<p class="location"> -->
-				<!-- 						<i class="btn"> </i><a href="../board/outm.jsp" target="_blank"> -->
-				<!-- 							회원 탈퇴</a> -->
-				<!-- 					</p> -->
 				<div class="form-group" style="text-align: center;"></div>
 			</div>
 		</div>

@@ -102,8 +102,8 @@
 									window.location.href = '/';
 								}
 							</script>
-							<li><a href="javascript:void(0);" onclick="logoutDoc()"><i class="fas fa-sign-in-alt"></i>
-									적용전 로그아웃</a></li>
+							<li><a href="javascript:void(0);" onclick="logoutDoc()"><i
+									class="fas fa-sign-in-alt"></i> 적용전 로그아웃</a></li>
 						</ul>
 					</div>
 				</div>
@@ -253,7 +253,6 @@
 										}
 									});
 				</script>
-
 				<div>
 					<p>
 						사용자 아이디:<span id="lid"></span>
