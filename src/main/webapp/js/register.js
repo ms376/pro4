@@ -15,105 +15,90 @@ var app = initializeApp(firebaseConfig);
 var db = getFirestore(app);
 
 async function registerDoc() {
-	var id = $('#id').val();
-	var pw = $('#pw').val();
-	var name = $('#name').val();
-	var email = $('#email').val();
-	var sex = $('#sex').val();
-	var nickname = $('#nickname').val();
-	var birth = $('#birth').val();
-	var address = $('#address').val();
-	var detailAddress = $('#detailAddress').val();
-	var rank = $('#rank').val(); // 등급 뺴야함
-	var interest = $('#interest').val();
-	var phone = $('#phone').val();
+    var id = $('#id').val();
+    var pw = $('#pw').val();
+    var name = $('#name').val();
+    var email = $('#email').val();
+    var sex = $('#sex').val();
+    var nickname = $('#nickname').val();
+    var birth = $('#birth').val();
+    var address = $('#address').val();
+    var detailAddress = $('#detailAddress').val();
+    var rank = $('#rank').val(); // 등급 뺴야함
+    var interest = $('#interest').val();
+    var phone = $('#phone').val();
 
-	// null 체크 empty 체크
-	if (!id) {
-		alert("아이디를 입력해주세요.");
-		return;
-	}
-	if (!pw) {
-		alert("비밀번호를 입력해주세요.");
-		return;
-	}
-	if (!email) {
-		alert("이메일을 입력해주세요.");
-		return;
-	}
-	if (!name) {
-		alert("이름을 입력해주세요.");
-		return;
-	}
-	if (!nickname) {
-		alert("닉네임을 입력해주세요.");
-		return;
-	}
-	if (!sex) {
-		alert("성별을 선택해주세요.");
-		return;
-	}
-	if (!address) {
-		alert("주소를 입력해주세요.");
-		return;
-	}
+    // null 체크 empty 체크
+    var errorMessage = "";
 
-	// 띄어쓰기가 포함되어 있는지 확인
-	if (id.includes(" ") || pw.includes(" ") || name.includes(" ") || email.includes(" ")) {
-		alert("공백 안댐");
-		return;
-	}
-	// 숫자만 입력받기 위한 이벤트 리스너 추가
-	document.getElementById('phone').addEventListener('input', function(e) {
-		// 입력된 값에서 숫자가 아닌 문자 제거
-		this.value = this.value.replace(/[^0-9]/g, '');
-	});
-	// 아이디/이메일 중복 체크 
-	const querySnapshot = await getDocs(collection(db, "members"));
-	querySnapshot.forEach((doc) => {
-		const data = doc.data();
-		if (data.id === id) {
-			alert("이미 존재하는 아이디 입니다.");
-			return;
-		}
-		if (data.email === email) {
-			alert("이미 존재하는 이메일 입니다.");
-			return;
-		}
-		if (data.nickname === nickname) {
-			alert("이미 존재하는 닉네임 입니다.");
-			return;
-		}
-		if (data.phone === phone) {
-			alert("이미 존재하는 전화번호 입니다.");
-			return;
-		}
-	});
+    if (!id) {
+        errorMessage = "아이디를 입력해주세요.";
+    } else if (!pw) {
+        errorMessage = "비밀번호를 입력해주세요.";
+    } else if (!email) {
+        errorMessage = "이메일을 입력해주세요.";
+    } else if (!name) {
+        errorMessage = "이름을 입력해주세요.";
+    } else if (!nickname) {
+        errorMessage = "닉네임을 입력해주세요.";
+    } else if (!sex) {
+        errorMessage = "성별을 선택해주세요.";
+    } else if (!address) {
+        errorMessage = "주소를 입력해주세요.";
+    }
 
-	var postData = {
-		id: id,
-		pw: pw,
-		name: name,
-		email: email,
-		sex: sex,
-		nickname: nickname,
-		birth: birth,
-		address: address,
-		detailAddress: detailAddress,
-		rank: rank,
-		interest: interest,
-		phone: phone
-	};
-	var timeElapsed = Date.now();
-	var newRef = doc(db, 'members', 'member' + timeElapsed);
+    // 띄어쓰기가 포함되어 있는지 확인
+    if (id.includes(" ") || pw.includes(" ") || name.includes(" ") || email.includes(" ")) {
+        errorMessage = "공백 안댐";
+    }
 
-	await setDoc(newRef, postData);
-	alert("회원가입이 성공했습니다.");
-	window.location.href = '/';
+    // 아이디/이메일 중복 체크
+    const querySnapshot = await getDocs(collection(db, "members"));
+    querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.id === id) {
+            errorMessage = "이미 존재하는 아이디 입니다.";
+        }
+        if (data.email === email) {
+            errorMessage = "이미 존재하는 이메일 입니다.";
+        }
+        if (data.nickname === nickname) {
+            errorMessage = "이미 존재하는 닉네임 입니다.";
+        }
+        if (data.phone === phone) {
+            errorMessage = "이미 존재하는 전화번호 입니다.";
+        }
+    });
+
+    if (errorMessage) {
+        alert(errorMessage);
+    } else {
+        var postData = {
+            id: id,
+            pw: pw,
+            name: name,
+            email: email,
+            sex: sex,
+            nickname: nickname,
+            birth: birth,
+            address: address,
+            detailAddress: detailAddress,
+            rank: rank,
+            interest: interest,
+            phone: phone
+        };
+
+        var timeElapsed = Date.now();
+        var newRef = doc(db, 'members', 'member' + timeElapsed);
+
+        await setDoc(newRef, postData);
+        alert("회원가입이 성공했습니다.");
+        window.location.href = '/';
+    }
 }
 // 회원정보 조회
 async function selectmemberDoc() {
-	$('#chatMessageArea').empty();
+	$('#ad').empty();
 
 	const snapshot = await getDocs(collection(db, "members"));
 	snapshot.forEach((doc) => {
@@ -150,17 +135,16 @@ async function loginDoc() {
 	}
 }
 
-// 로그인 세션스토리지 초기화(로그아웃)
 function appendMessage(msg) {
-	$('#chatMessageArea').append(msg + "<br>");
-	var chatAreaHeight = $('#chatArea').height();
-	var maxScroll = $('#chatMessageArea').height() - chatAreaHeight;
-	$('#chatArea').scrollTop(maxScroll);
+	$('#ad').append(msg + "<br>");
+	var chatAreaHeight = $('#adArea').height();
+	var maxScroll = $('#ad').height() - chatAreaHeight;
+	$('#ad').scrollTop(maxScroll);
 }
 
 $(document).ready(function() {
 	console.log(111);
 	$('#select').click(function() { selectmemberDoc(); });
-	$('#write').click(function() { registerDoc(); });
+	$('#register').click(function() { registerDoc(); });
 	$('#login').click(function() { loginDoc(); });
 });

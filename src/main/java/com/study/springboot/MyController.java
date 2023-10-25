@@ -34,6 +34,11 @@ public class MyController {
 
 		return "membership/loginform";
 	}
+    @RequestMapping("/ad")
+   	public String ad() {
+
+   		return "membership/adpage";
+   	}
     @RequestMapping("/register")
 	public String register() {
 

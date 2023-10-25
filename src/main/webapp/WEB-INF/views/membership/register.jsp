@@ -10,7 +10,6 @@
 <!-- 주소 JS -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="../js/address.js"></script>
-<link href="../js/register.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<h1>회원가입 및 로그인</h1>
@@ -25,7 +24,24 @@
 	</div>
 	<div>
 		<label for="password">비밀번호:</label> <input type="password" id="pw">
+		<label for="PasswordConfirm">비밀번호 재확인: <input type="password" id="pwChk" class="pw"><span id="checkPw" style="font-size: 12px;"></span></label>
 	</div>
+<script>
+	$('.pw').focusout(function(){
+    	let pass1 = $("#pw").val();
+        let pass2 = $("#pwChk").val();
+        
+        if (pass1 !== "" || pass2 !== ""){
+        	if (pass1 === pass2){
+            	$("#checkPw").html(' 비밀번호 일치');
+            	$("#checkPw").css('color', 'green');
+            } else {
+            	$("#checkPw").html(' 비밀번호 불일치');
+                $("#checkPw").css('color', 'red');
+            }
+        }
+    });
+</script>
 	<div>
 		<label for="nickname">닉네임:</label> <input type="text" id="nickname">
 	</div>
@@ -60,7 +76,7 @@
 	<input type="text" id="detailAddress" placeholder="상세주소">
 	<input type="text" id="extraAddress" placeholder="참고항목" disabled><br>
 	<br />
-	<button id="write">회원가입</button>
+	<button id="register">회원가입</button>
 	<br>
 	<script>
 		function numlimit(el, maxlength) {
@@ -70,15 +86,5 @@
 			  }
 			}
 		</script>
-	<br>
-	<br>
-	<br>
-	<h1>아래는 관리자페이지로 옴길거</h1>
-	<br>
-	<input type="button" id="select" value="조회">
-	<div id="chatArea">
-		<div id="chatMessageArea"></div>
-	</div>
-
 </body>
 </html>
