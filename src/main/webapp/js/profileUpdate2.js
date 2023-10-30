@@ -1,61 +1,48 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js';
-import { getFirestore, doc, updateDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
+import { getFirestore, doc, deleteDoc, query, where, collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCYTzwY4INgoQAJ_e8ZdxlrOrJyIsb0iEA",
-  authDomain: "pro4-3a50f.firebaseapp.com",
-  databaseURL: "https://pro4-3a50f-default-rtdb.firebaseio.com",
-  projectId: "pro4-3a50f",
-  storageBucket: "pro4-3a50f.appspot.com",
-  messagingSenderId: "307587646265",
-  appId: "1:307587646265:web:1a1d9ab9129d2c2956dee8",
-  measurementId: "G-LMXETWQJGT"
+var firebaseConfig = {
+	apiKey: "AIzaSyCYTzwY4INgoQAJ_e8ZdxlrOrJyIsb0iEA",
+	authDomain: "pro4-3a50f.firebaseapp.com",
+	databaseURL: "https://pro4-3a50f-default-rtdb.firebaseio.com",
+	projectId: "pro4-3a50f",
+	storageBucket: "pro4-3a50f.appspot.com",
+	messagingSenderId: "307587646265",
+	appId: "1:307587646265:web:1a1d9ab9129d2c2956dee8",
+	measurementId: "G-LMXETWQJGT"
 };
+var app = initializeApp(firebaseConfig);
+var db = getFirestore(app);
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-var userData = sessionStorage.getItem("loggedInUser");
-var user = JSON.parse(userData);
-var id = user.id;
-document.getElementById("lid").textContent = id;
+async function deleteDocument() {
+	var userData = sessionStorage.getItem("loggedInUser");
+	if (userData) {
+		var user = JSON.parse(userData);
+		const q = query(collection(db, 'members'), where('id', '==', user.id));
+		const querySnapshot = await getDocs(q);
+		if (!querySnapshot.empty) {
+			// 찾은 문서 중에서 첫 번째 문서를 삭제합니다.
+			const documentToDelete = querySnapshot.docs[0];
+			try {
+				await deleteDoc(documentToDelete.ref);
+				console.log(user.id);
+				console.log("문서가 성공적으로 삭제되었습니다.");
+				 sessionStorage.clear();
+				 alert("문서가 성공적으로 삭제되었습니다.");
+				 window.location.href = '/prf';
+			} catch (error) {
+				console.log("문서 삭제 중 오류가 발생했습니다" + error);
+			}
+		} else {
+			console.log("삭제할 데이터가 존재하지 않습니다.");
+		}
+	} else {
+		console.log("삭제할 데이터가 존재하지 않습니다.");
+	}
+}
 
-document.getElementById("updateButton").addEventListener("click", async function () {
-  try {
-    // Input field values
-    const newpw = document.getElementById("newpw").value;
-    const newNickname = document.getElementById("newnickname").value;
-    const newAddress = document.getElementById("newaddr").value;
-    const newDetailAddress = document.getElementById("newaddrd").value;
-    const newBirth = document.getElementById("newbirth").value;
-    const newInterest = document.getElementById("newinterest").value;
-    const newEmail = document.getElementById("newemail").value;
-    const newPhone = document.getElementById("newphone").value;
-    const newSex = document.getElementById("newsex").value;
-
-    // Replace 'USER_ID' with the actual user's ID
-
-    // Reference to the user's document
-    const userDocRef = doc(db, 'members', "lid");
-
-    // Create an object with the updated data
-    const updatedData = {
-      pw: newpw,
-      nickname: newNickname,
-      address: newAddress,
-      detailAddress: newDetailAddress,
-      birth: newBirth,
-      interest: newInterest,
-      email: newEmail,
-      phone: newPhone,
-      sex: newSex
-    };
-
-    // Update the user's data in Firestore
-    await updateDoc(userDocRef, updatedData, { merge: true });
-
-    // Show a success message to the user
-    alert("정보가 업데이트되었습니다.");
-  } catch (error) {
-    alert("정보 업데이트 중 오류가 발생했습니다.");
-  }
+$(document).ready(function() {
+	$('#de').click(function() {
+		deleteDocument();
+	});
 });

@@ -27,6 +27,7 @@ async function registerDoc() {
     var rank = $('#rank').val(); // 등급 뺴야함
     var interest = $('#interest').val();
     var phone = $('#phone').val();
+    var img=$('#img');
 
     // null 체크 empty 체크
     var errorMessage = "";
@@ -85,7 +86,8 @@ async function registerDoc() {
             detailAddress: detailAddress,
             rank: rank,
             interest: interest,
-            phone: phone
+            phone: phone,
+            img: "defaultIMG"
         };
 
         var timeElapsed = Date.now();

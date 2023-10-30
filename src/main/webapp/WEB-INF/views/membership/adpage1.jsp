@@ -6,24 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="module" src="../js/ad.js"></script>
+<script type="module" src="../js/ad1.js"></script>
 <script src="https://code.jquery.com/jquery.js"></script>
 </head>
 <body>
+<h1>관리자 페이지</h1>
+<h3>아이디 조회</h3>
 	<table border="1">
 		<tr>
-			<th>id</th>
-			<th>pw</th>
-			<th>name</th>
-			<th>email</th>
-			<th>sex</th>
-			<th>nickname</th>
-			<th>birth</th>
-			<th>address</th>
-			<th>detailAddress</th>
-			<th>rank</th>
-			<th>interest</th>
-			<th>phone</th>
+			<th>아이디</th>
+			<th>비밀번호</th>
+			<th>실명</th>
+			<th>이메일</th>
+			<th>성별</th>
+			<th>닉네임</th>
+			<th>생일</th>
+			<th>주소</th>
+			<th>동-호수</th>
+			<th>등급</th>
+			<th>관심사항</th>
+			<th>번호</th>
 		</tr>
 		<tbody id="table-body"></tbody>
 	</table>

@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery.js"></script>
+<script type="module" src="../js/profileUpdate2.js"></script>
 </head>
 <head>
 <style>
@@ -39,13 +40,10 @@ label {
 				<div style="text-align: center;">
 					<h3>내정보</h3>
 				</div>
-				<div>
-					<img class="center animated rollIn" src="img/a2.jpg" alt="avatar">
-					<br>
-				</div>
 				<script>
 					// 사용자 정보 출력을 함수로 감싸서 문서 로딩 후 실행하도록 합니다.
-					document.addEventListener(
+					document
+							.addEventListener(
 									"DOMContentLoaded",
 									function() {
 										var userData = sessionStorage
@@ -75,30 +73,32 @@ label {
 											document.getElementById("laddr").textContent = address;
 											document.getElementById("laddrd").textContent = detailAddress;
 											document.getElementById("lbirth").textContent = birth;
-											document.getElementById("linterest").textContent = interest;
+											document
+													.getElementById("linterest").textContent = interest;
 											document.getElementById("lemail").innerText = email;
 											document.getElementById("lphone").innerText = phone;
 											document.getElementById("lsex").innerText = sex;
 											document.getElementById("lrank").innerText = rank;
 										} else {
-											console.log("세션 스토리지에서 user 데이터를 찾을 수 없습니다.");
+											console
+													.log("세션 스토리지에서 user 데이터를 찾을 수 없습니다.");
 										}
 									});
 				</script>
 				<div class="profile-info">
-					<label for="username">아이디: <span id="lid"></span></label>
-					<label for="fullname">실명: <span id="lname"></span></label>
-					<label for="fullname">닉네임: <span id="lnick"></span></label>
-					<label for="address">주소: <span id="laddr"></span> <span id="laddrd"></span></label>
-					<label for="birthdate">생일: <span id="lbirth"></span></label>
-					<label for="interest">관심사항: <span id="linterest"></span></label>
-					<label for="email">이메일: <span id="lemail"></span></label>
-					<label for="phone">전화번호: <span id="lphone"></span></label>
-					<label for="sex">성별: <span id="lsex"></span></label>
+					<label for="username">아이디: <span id="lid"></span></label> <label
+						for="fullname">실명: <span id="lname"></span></label> <label
+						for="fullname">닉네임: <span id="lnick"></span></label> <label
+						for="address">주소: <span id="laddr"></span> <span
+						id="laddrd"></span></label> <label for="birthdate">생일: <span
+						id="lbirth"></span></label> <label for="interest">관심사항: <span
+						id="linterest"></span></label> <label for="email">이메일: <span
+						id="lemail"></span></label> <label for="phone">전화번호: <span
+						id="lphone"></span></label> <label for="sex">성별: <span id="lsex"></span></label>
 					<label for="rank">등급: <span id="lrank"></span></label>
-				</div><br>
-				<a href="/profileC">정보수정</a>
-				<button class="change-button">회원 탈퇴</button>
+				</div>
+				<br> <a href="/profileC">정보수정</a>
+				<button id="de">회원 탈퇴</button>
 				<div class="form-group" style="text-align: center;"></div>
 			</div>
 		</div>
