@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko" class="">
 <head>
@@ -70,20 +71,27 @@
 				<header class="margin-bottom-xxxxxl">
 					<h3 class="margin-bottom-xxl text-center">로그인</h3>
 				</header>
-				<div class="login">
-					<div class="input-group input-group-login">
+				<c:url value="j_spring_security_check" var="loginUrl" />
+				<form action="${loginUrl}" method="post">
+					<div class="login">
 						<div class="input-group input-group-login">
-							<input type="text" class="form-control" placeholder="아이디"
-								id="idInput"> <input type="password"
-								class="form-control" placeholder="비밀번호" id="passwordInput">
+							<div class="input-group input-group-login">
+								<input type="text" class="form-control" placeholder="아이디"
+									name="idI" id="idInput"> <input type="password"
+									class="form-control" placeholder="비밀번호" name="passwordI"
+									id="passwordInput">
+							</div>
 						</div>
-					</div>
 					<div class="form-group margin-bottom-xxxl">
-						<button type="button" class="btn btn-primary btn-block" id="login">로그인</button>
+						<button class="btn btn-primary btn-block" id="login" type="submit">로그인</button>
 						<br>
 						<div class="checkbox checkbox-styled"></div>
 					</div>
-
+				</form>
+				<div class="form-group">
+					<p class="text-center">
+						회원가입 <a href="/a" class="text-primary">가입</a>
+					</p>
 					<div class="form-group">
 						<a href="#" class="btn btn-naver btn-block"><i
 							class="fab fab-naver-alt"></i> 로그인</a>
@@ -96,13 +104,9 @@
 						<a href="#" class="btn btn-google btn-block"> Google 로그인</a>
 					</div>
 					<p class="text-center">
-						회원가입 <a href="/join" class="text-primary">가입</a>
+						<a href="/findpro" class="text-default">비밀번호를 잊으셨나요?</a>
 					</p>
-					<p class="text-center">
-						<a href="javascript:;" onclick="#" class="text-default">비밀번호를
-							잊으셨나요? <span class="text-primary">찾기</span>
-						</a>
-					</p>
+					</div>
 				</div>
 			</div>
 		</div>

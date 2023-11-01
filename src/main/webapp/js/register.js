@@ -125,7 +125,7 @@ async function loginDoc() {
 				loggedInUser = data; // 로그인 성공한 사용자 정보 저장
 				sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
 				alert("로그인 성공! 사용자: " + data.id);
-				window.location.href = '/';
+//				window.location.href = '/';
 			}
 		});
 

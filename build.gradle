@@ -31,9 +31,8 @@ dependencies {
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
     implementation 'org.springframework.security:spring-security-taglibs'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-    implementation 'com.google.firebase:firebase-admin:9.4.0'
-    implementation 'com.google.cloud:google-cloud-firestore:2.3.1'
-
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'com.google.firebase:firebase-admin:9.2.0' // 버전은 Firebase Admin SDK의 최신 버전으로 업데이트필
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
 

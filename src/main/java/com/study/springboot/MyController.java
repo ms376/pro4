@@ -9,12 +9,8 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Part;
 
@@ -25,55 +21,97 @@ public class MyController {
     public  String root() throws Exception{
         return "main";
     }
-    @RequestMapping("/wr")
-	public String wr() {
+    @RequestMapping("/club")
+   	public String clubboard() {
 
-		return "write";
+   		return "membership/clubboard";
+   	}
+    @RequestMapping("/review")
+   	public String reviewboard() {
+
+   		return "membership/reviewboard";
+   	}
+    @RequestMapping("/wrtb")
+	public String wrtieboard() {
+
+		return "membership/writeboard";
 	}
+    @RequestMapping("/findpro")
+    public String findpro() {
+    	
+    	return "findpro";
+    }
     @RequestMapping("/login")
 	public String loginForm() {
 
-		return "membership/loginform";
+		return "loginform";
 	}
+
+    @RequestMapping("/fail")
+    public String fail() {
+    	
+    	return "fail";
+    }
+    @RequestMapping("/inte")
+    public String logirm() {
+    	
+    	return "membership/introduce";
+    }
     @RequestMapping("/ad3")
     public String ad3() {
     	
-    	return "membership/adpage3";
+    	return "admin/adpage3";
     }
     @RequestMapping("/ad2")
    	public String ad2() {
 
-   		return "membership/adpage2";
+   		return "admin/adpage2";
    	}
+    @RequestMapping("/writeform")
+    public String write() {
+       
+       return "write";
+    }
+ @RequestMapping("/viewboard")
+    public String view() {
+
+       return "board/viewboard";
+    }
+    
+    @RequestMapping("/editboard")
+    public String edit() {
+
+       return "board/editboard";
+    }
     @RequestMapping("/ad1")
    	public String ad1() {
 
-   		return "membership/adpage1";
+   		return "admin/adpage1";
    	}
     @RequestMapping("/register")
 	public String register() {
 
-		return "membership/signupform";
+		return "signupform";
 	}
 	@RequestMapping("/uploadForm")
 	public String uploadForm() {
 
 		return "FileUpload/fileForm";
 	}
-	@RequestMapping("/write")
-	public String write() {
+	@RequestMapping("/free")
+	   public String freeboard() {
+
+	      return "board/freeboard";
+	   }
+	@RequestMapping("/mypage")
+	public String mypage() {
 		
-		return "write";
+		return "membership/mypage";
 	}
-	@RequestMapping("/T")
-	public String TT() {
-
-		return "membership/member";
-	}
-	@RequestMapping("/a")
-	public String login() {
-
-		return "membership/register";
+	@RequestMapping("/ques")
+	public String questionboard	() {
+		
+		return "board/questionboard";
 	}
 	@RequestMapping("/prf")
 	public String profile() {
@@ -85,7 +123,7 @@ public class MyController {
 
 		return "membership/profile2";
 	}
-	
+
 	@RequestMapping("/uploadOk")
 	public String uploadOk(HttpServletRequest request) {
 	    try {
