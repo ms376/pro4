@@ -2,31 +2,24 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebas
 import { getFirestore, collection, getDocs, setDoc, doc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
 
 var firebaseConfig = {
-  apiKey: "AIzaSyBsXDVO5_ewiC_lh01XW8TWwBJcdGWTDfI",
-  authDomain: "java-project-ed311.firebaseapp.com",
-  databaseURL: "https://java-project-ed311-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "java-project-ed311",
-  storageBucket: "java-project-ed311.appspot.com",
-  messagingSenderId: "945213480964",
-  appId: "1:945213480964:web:7afa4ec5d9a3cb22085551"
+	apiKey: "AIzaSyCYTzwY4INgoQAJ_e8ZdxlrOrJyIsb0iEA",
+	authDomain: "pro4-3a50f.firebaseapp.com",
+	databaseURL: "https://pro4-3a50f-default-rtdb.firebaseio.com",
+	projectId: "pro4-3a50f",
+	storageBucket: "pro4-3a50f.appspot.com",
+	messagingSenderId: "307587646265",
+	appId: "1:307587646265:web:1a1d9ab9129d2c2956dee8",
+	measurementId: "G-LMXETWQJGT"
 };
-
-function checkSession() { // 로그인 체크
-    var userData; // userData를 전역 변수로 선언
-
-    document.addEventListener("DOMContentLoaded", function() {
-        userData = sessionStorage.getItem("loggedInUser");
-        if (userData) {
-            var user = JSON.parse(userData);
-            var id = user.id;
-            document.getElementById("userId").textContent = id;
-            window.location.href = '/writeform'; // userData가 존재할 경우에는 여기로 이동합니다.
-        } else {
-            console.log("세션 스토리지에서 user 데이터를 찾을 수 없습니다.");
-            alert("로그인 후 이용해주세요");
-            window.location.href = '/free'; // userData가 존재하지 않을 경우에는 여기로 이동합니다.
-        }
-    });
+var userData; // userData를 전역 변수로 선언
+async function checkSession() { 
+	userData = sessionStorage.getItem('loggedInUser'); // 전역 변수에 할당
+    if(!userData) {
+		alert("로그인 후 이용해주세요.");
+		window.location.href = "/login"; // 로그인페이지 이동
+		return false;
+	}
+	return true;
 }
 checkSession();
 
@@ -86,7 +79,7 @@ async function writeDoc() {
 
 	await setDoc(newRef, postData);
 	alert("작성이 완료되었습니다.");
-	window.location.href="/free";
+	window.location.href="/freeboard";
 }
 $(document).ready(function() {
 	$('#write').click(function() { writeDoc(); });

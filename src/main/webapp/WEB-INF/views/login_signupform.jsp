@@ -1,4 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,14 +7,20 @@
 <meta http-equiv="imagetoolbar" content="no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>프로젝트3</title>
-<script type="module" src="../js/main.js"></script>
+<script type="module" src="../js/register.js"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
 <link href="../js/main.css" rel="stylesheet" type="text/css">
+<!-- 주소 JS -->
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="../js/address.js"></script>
 <link rel="stylesheet"
 	href="//use.fontawesome.com/releases/v5.5.0/css/all.css"
 	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
 	crossorigin="anonymous">
 </head>
 <body>
+	<!-------------------------- 네비게이션 -------------------------->
 	<div class="container-fluid top-line fixed-header">
 		<div class="container">
 			<div class="row">
@@ -173,123 +178,139 @@ document.addEventListener('DOMContentLoaded', function () {
 		</div>
 	</nav>
 	<div class="ety-main"></div>
-	<div class="padding-top-50 padding-bottom-30">
-		<div class="container">
-			<div class="center-heading">
-				<h2 class="en1">
-					<img src="img/mma.png">
-				</h2>
-				<span class="center-line"></span>
-			</div>
-			<div class="row">
-				<div class="col-lg-6">
-					<iframe width="560" height="315"
-						src="https://www.youtube.com/embed/xR__13CEVeg?si=nC5L5AnjYiSG6fA8"
-						title="YouTube video player" frameborder="0"
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-						allowfullscreen></iframe>
-				</div>
-				<div class="col-lg-6">
-					<h2 class="en1">동아리 홍보</h2>
-					<p class="ks4">
-						<strong>한국외대 동아리 홍보 영상</strong>
-					</p>
-					<p class="ks4">
-						<a href="https://www.youtube.com/watch?v=xR__13CEVeg"
-							target="_blank">유튜브 바로가기</a>
-					</p>
-					<br>
-					<h2 class="en1">테니스 동아리</h2>
-					<p class="ks4">
-						<strong>테니스동아리 팀 : 소닉 소개입니다.</strong>
-					</p>
-					<p class="ks4">
-						<a href="https://www.youtube.com/watch?v=Z-rmEFEuHRU"
-							target="_blank">유튜브 바로가기</a>
-					</p>
-				</div>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="http://smy.kr/js/jquery.register_form.js"></script>
+	<div class="container ety-mt margin-bottom-50 padding-top-50">
+		<input type="hidden" name="w" value=""> <input type="hidden"
+			name="url" value="%2Fbbs%2Fregister_form.php"> <input
+			type="hidden" name="agree" value="1"> <input type="hidden"
+			name="agree2" value="1"> <input type="hidden"
+			name="cert_type" value=""> <input type="hidden"
+			name="cert_no" value=""> <input type="hidden" name="mb_sex"
+			value="">
+		<div id="register_form" class="form_01">
+			<div class="tbl_frm01 tbl_wrap">
+
+				<fieldset>
+					<table class="userTable">
+						<tr>
+							<td class="userTit"><span class="c_imp"></span>아이디</td>
+							<td class="userVal"><input type="text" id="id" value=""
+								maxlength="15" class="userInput" style="width: 120px;" /> <span
+								style="margin-left: 10px;"></span> <span style="color: #888888;"></span>
+							</td>
+						</tr>
+						<tr>
+							<td class="userTit"><span class="c_imp"></span>실명</td>
+							<td class="userVal"><input type="text" name="name" id="name"
+								style="width: 100px;" class="userInput" maxlength="7" /></td>
+						</tr>
+						<tr>
+							<td class="userTit"><span class="c_imp"></span>비밀번호</td>
+							<td class="userVal"><input type="password" name="pw" id="pw"
+								style="width: 100px;" class="userInput" maxlength="25" /></td>
+						</tr>
+						<tr>
+							<td class="userTit"><span class="c_imp"></span>비밀번호 확인</td>
+							<td class="userVal"><input type="password" id="pwChk"
+								class="pw"> <span id="checkPw" style="font-size: 12px;"></span>
+							</td>
+						</tr>
+						<script>
+							$('.pw').focusout(function() {
+								let pass1 = $("#pw").val();
+								let pass2 = $("#pwChk").val();
+
+								if (pass1 !== "" || pass2 !== "") {
+									if (pass1 === pass2) {
+										$("#checkPw").html(' 비밀번호 일치');
+										$("#checkPw").css('color', 'green');
+									} else {
+										$("#checkPw").html(' 비밀번호 불일치');
+										$("#checkPw").css('color', 'red');
+									}
+								}
+							});
+						</script>
+						<tr>
+							<td class="userTit"><span style="margin-left: 10px;"></span>생년월일</td>
+							<td class="userVal"><label><input type="radio"
+									name="sex" value="남자" id="sex" checked>남자</label> <label><input
+									type="radio" name="sex" id="sex" value="여자">여자</label> <span
+								style="margin-left: 20px;"></span> <input type="text" id="birth"
+								oninput='numlimit(this, 6)' class="userInput w40" maxlength="6" />
+								<span style="margin: 0 5px 0 1px">년</span> <span
+								style="margin: 0 0 0 3px; color: #888888;">(예 : 980101)</span></td>
+						</tr>
+						<tr>
+							<td class="userTit"><span class="c_imp"></span>닉네임</td>
+							<td class="userVal"><input type="text" name="nickname"
+								id="nickname" style="width: 100px;" class="userInput"
+								maxlength="25" /> <span style="margin-left: 10px;"></span> <span
+								style="color: #888888;"></td>
+						</tr>
+						<tr>
+							<td class="userTit"><span class="c_imp"></span> 이메일</td>
+							<td class="userVal"><input type="text" id="email" value=""
+								class="userInput w20" /> <span style="margin-left: 20px;"></span>
+							</td>
+						</tr>
+						<tr>
+							<td class="userTit"><span class="c_imp"></span> 휴대전화</td>
+							<td class="userVal"><input type="text" id="phone" value=""
+								class="userInput w30" oninput='numlimit(this, 11)'
+								maxlength="11" /> <span style="margin-left: 20px;"></span></td>
+						</tr>
+
+						<tr>
+							<td class="userTit" rowspan="2">주소</td>
+							<td class="userVal"><input type="button"
+								onclick="execDaumPostcode()" value="우편번호 찾기"> <input
+								type="text" id="postcode" placeholder="우편번호" disabled>(우편번호)</td>
+						</tr>
+						<tr>
+							<td class="userVal"><input type="text" id="address"
+								placeholder="주소" disabled> <input type="text"
+								id="detailAddress" placeholder="상세주소"> <input
+								type="text" id="extraAddress" placeholder="참고항목" disabled>
+								<span style="margin-left: 10px;"></span></td>
+						</tr>
+						<tr>
+							<td class="userTit"><span class="c_imp"></span> 관심분야</td>
+							<td class="userVal" style="padding: 3px 0 3px 10px;"><select
+								id="interest" class="userSelect w300">
+									<option value="">::관심분야 선택::</option>
+									<option value="스포츠">스포츠</option>
+									<option value="예술활동">예술활동</option>
+									<option value="봉사활동">봉사활동</option>
+									<option value="문화활동">문화활동</option>
+									<option value="맛집탐험">맛집탐험</option>
+							</select></td>
+						</tr>
+						<script>
+							function numlimit(el, maxlength) {
+								if (el.value.length > maxlength) {
+									el.value = el.value.substr(0, maxlength);
+								}
+							}
+						</script>
+					</table>
+				</fieldset>
 			</div>
 		</div>
-	</div>
-
-	<div class="container padding-top-50">
-		<div class="row">
-			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-				<div class="row">
-					<div class="col-md-12 main_one_title ks4">공지사항</div>
-				</div>
-				<a href="/noticeboard" class="one_more"><span class="sound_only">게시판1세부</span><i
-					class="fa fa-plus" aria-hidden="true"
-					style="font-size: 22px; line-height: 1px;"></i><span
-					class="sound_only"> 더보기</span></a>
-				<div class="lat_list_one">
-					<ul>
-						<li class="ks4"><a href="#">동아리동아리동아리1</a> <span
-							class="lt_date hidden-xs hidden-sm">06-16</span></li>
-						<li class="ks4"><a href="#">동아리동아리동아리1</a> <span
-							class="lt_date hidden-xs hidden-sm">05-18</span></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-				<div class="row">
-					<div class="col-md-12 main_one_title ks4">홍보/광고</div>
-				</div>
-				<a href="#" class="one_more"><span class="sound_only">게시판2</span><i
-					class="fa fa-plus" aria-hidden="true"
-					style="font-size: 22px; line-height: 1px;"></i><span
-					class="sound_only"> 더보기</span></a>
-				<div class="lat_list_one">
-					<ul>
-						<li class="ks4"><a href="#">동아리동아리동아리2</a> <span
-							class="lt_date hidden-xs hidden-sm">10-13</span></li>
-						<li class="ks4"><span class="hot_icon">N<span
-								class="sound_only">인기글</span></span><a href="#"> 인기글표시--</a> <span
-							class="lt_date hidden-xs hidden-sm">10-06</span></li>
-					</ul>
-				</div>
-			</div>
+		<script>
+			$(function() {
+				font_resize("container",
+						get_cookie("ck_font_resize_rmv_class"),
+						get_cookie("ck_font_resize_add_class"));
+			});
+		</script>
+		<div class="btn_confirm">
+			<a href="/" class="btn_cancel">돌아가기</a>
+			<button type="submit" id="register" class="btn_submit">회원가입</button>
 		</div>
 	</div>
-
-	<div class="container padding-top-50">
-		<div class="row">
-			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-				<div class="row">
-					<div class="col-md-12 main_one_title ks4">자유게시판</div>
-				</div>
-				<a class="one_more"> <span class="sound_only">ㅇㅇㅇ</span> <i
-					class="fa fa-plus" aria-hidden="true"
-					style="font-size: 22px; line-height: 1px;"></i> <span
-					class="sound_only"> 더보기</span></a>
-				<div class="lat_list_one">
-					<ul>
-						<table>
-							<thead>
-							<tbody id="table-body">
-							</tbody>
-						</table>
-					</ul>
-				</div>
-			</div>
-			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-				<div class="row">
-					<div class="col-md-12 main_one_title ks4">후기/리뷰</div>
-				</div>
-				<a href="#" class="one_more"><span class="sound_only">게시판4</span><i
-					class="fa fa-plus" aria-hidden="true"
-					style="font-size: 22px; line-height: 1px;"></i><span
-					class="sound_only"> 더보기</span></a>
-				<div class="lat_list_one">
-					<ul>
-						<li class="ks4"><a href="#">동아리동아리동아리4</a> <span
-							class="lt_date hidden-xs hidden-sm">09-27</span></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<div class="row padding-top-20"></div>
 	<div class="d-none d-sm-block margin-top-30"></div>
 	<div class="margin-bottom-40"></div>
@@ -319,8 +340,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	<script type="text/javascript"
 		src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script>
-   var jQuery = $.noConflict(true);
-   </script>
+		var jQuery = $.noConflict(true);
+	</script>
 	<script
 		src="../js/dong/theme/theme_wide_17/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script

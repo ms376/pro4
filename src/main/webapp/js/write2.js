@@ -1,7 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js';
 import { getFirestore, collection, getDocs, setDoc, doc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
 
-const firebaseConfig = {
+var firebaseConfig = {
 	apiKey: "AIzaSyCYTzwY4INgoQAJ_e8ZdxlrOrJyIsb0iEA",
 	authDomain: "pro4-3a50f.firebaseapp.com",
 	databaseURL: "https://pro4-3a50f-default-rtdb.firebaseio.com",

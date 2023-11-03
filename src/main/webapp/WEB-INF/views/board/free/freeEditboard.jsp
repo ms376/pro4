@@ -8,7 +8,7 @@
 <meta http-equiv="imagetoolbar" content="no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>프로젝트3</title>
-<script type="module" src="../js/main.js"></script>
+<script type="module" src="../js/freeEdit.js"></script>
 <link href="../js/main.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="//use.fontawesome.com/releases/v5.5.0/css/all.css"
@@ -172,124 +172,19 @@ document.addEventListener('DOMContentLoaded', function () {
 			</div>
 		</div>
 	</nav>
-	<div class="ety-main"></div>
-	<div class="padding-top-50 padding-bottom-30">
-		<div class="container">
-			<div class="center-heading">
-				<h2 class="en1">
-					<img src="img/mma.png">
-				</h2>
-				<span class="center-line"></span>
-			</div>
-			<div class="row">
-				<div class="col-lg-6">
-					<iframe width="560" height="315"
-						src="https://www.youtube.com/embed/xR__13CEVeg?si=nC5L5AnjYiSG6fA8"
-						title="YouTube video player" frameborder="0"
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-						allowfullscreen></iframe>
-				</div>
-				<div class="col-lg-6">
-					<h2 class="en1">동아리 홍보</h2>
-					<p class="ks4">
-						<strong>한국외대 동아리 홍보 영상</strong>
-					</p>
-					<p class="ks4">
-						<a href="https://www.youtube.com/watch?v=xR__13CEVeg"
-							target="_blank">유튜브 바로가기</a>
-					</p>
-					<br>
-					<h2 class="en1">테니스 동아리</h2>
-					<p class="ks4">
-						<strong>테니스동아리 팀 : 소닉 소개입니다.</strong>
-					</p>
-					<p class="ks4">
-						<a href="https://www.youtube.com/watch?v=Z-rmEFEuHRU"
-							target="_blank">유튜브 바로가기</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="container padding-top-50">
-		<div class="row">
-			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-				<div class="row">
-					<div class="col-md-12 main_one_title ks4">공지사항</div>
-				</div>
-				<a href="/noticeboard" class="one_more"><span class="sound_only">게시판1세부</span><i
-					class="fa fa-plus" aria-hidden="true"
-					style="font-size: 22px; line-height: 1px;"></i><span
-					class="sound_only"> 더보기</span></a>
-				<div class="lat_list_one">
-					<ul>
-						<li class="ks4"><a href="#">동아리동아리동아리1</a> <span
-							class="lt_date hidden-xs hidden-sm">06-16</span></li>
-						<li class="ks4"><a href="#">동아리동아리동아리1</a> <span
-							class="lt_date hidden-xs hidden-sm">05-18</span></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-				<div class="row">
-					<div class="col-md-12 main_one_title ks4">홍보/광고</div>
-				</div>
-				<a href="#" class="one_more"><span class="sound_only">게시판2</span><i
-					class="fa fa-plus" aria-hidden="true"
-					style="font-size: 22px; line-height: 1px;"></i><span
-					class="sound_only"> 더보기</span></a>
-				<div class="lat_list_one">
-					<ul>
-						<li class="ks4"><a href="#">동아리동아리동아리2</a> <span
-							class="lt_date hidden-xs hidden-sm">10-13</span></li>
-						<li class="ks4"><span class="hot_icon">N<span
-								class="sound_only">인기글</span></span><a href="#"> 인기글표시--</a> <span
-							class="lt_date hidden-xs hidden-sm">10-06</span></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="container padding-top-50">
-		<div class="row">
-			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-				<div class="row">
-					<div class="col-md-12 main_one_title ks4">자유게시판</div>
-				</div>
-				<a class="one_more"> <span class="sound_only">ㅇㅇㅇ</span> <i
-					class="fa fa-plus" aria-hidden="true"
-					style="font-size: 22px; line-height: 1px;"></i> <span
-					class="sound_only"> 더보기</span></a>
-				<div class="lat_list_one">
-					<ul>
-						<table>
-							<thead>
-							<tbody id="table-body">
-							</tbody>
-						</table>
-					</ul>
-				</div>
-			</div>
-			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-				<div class="row">
-					<div class="col-md-12 main_one_title ks4">후기/리뷰</div>
-				</div>
-				<a href="#" class="one_more"><span class="sound_only">게시판4</span><i
-					class="fa fa-plus" aria-hidden="true"
-					style="font-size: 22px; line-height: 1px;"></i><span
-					class="sound_only"> 더보기</span></a>
-				<div class="lat_list_one">
-					<ul>
-						<li class="ks4"><a href="#">동아리동아리동아리4</a> <span
-							class="lt_date hidden-xs hidden-sm">09-27</span></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
+	<br><br><br><br><br><br><br><br><br>
+<table border="1" style="width: 60%; margin: 0 auto; border-collapse: collapse; margin-top: 20px;">
+    <thead>
+        <tr style="background-color: #3498db; color: white;">
+            <th style="width: 20%; padding: 10px;">아이디</th>
+            <th style="width: 40%; padding: 10px;">제목</th>
+            <th style="width: 20%; padding: 10px;">내용</th>
+            <th style="width: 20%; padding: 10px;">작성일</th>
+            <th style="width: 18%; padding: 20px;"></th>
+        </tr>
+    </thead>
+    <tbody id="table-body3"></tbody>
+</table>
 	<div class="row padding-top-20"></div>
 	<div class="d-none d-sm-block margin-top-30"></div>
 	<div class="margin-bottom-40"></div>
@@ -334,7 +229,5 @@ document.addEventListener('DOMContentLoaded', function () {
 		src="../js/dong/theme/theme_wide_17/assets/countdown/js/jquery.final-countdown.js"></script>
 	<script type="text/javascript"
 		src="../js/dong/theme/theme_wide_17/js/bootstrap-dropdownhover.js"></script>
-	<script type="text/javascript"
-		src="../js/dong/theme/theme_wide_17/js/custom.js"></script>
 </body>
 </html>

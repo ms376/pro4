@@ -1,188 +1,195 @@
 package com.study.springboot;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.Part;
 
 @Controller
 public class MyController {
 
-    @RequestMapping("/")
-    public  String root() throws Exception{
-        return "main";
-    }
-    @RequestMapping("/club")
-   	public String clubboard() {
-
-   		return "membership/clubboard";
-   	}
-    @RequestMapping("/review")
-   	public String reviewboard() {
-
-   		return "membership/reviewboard";
-   	}
-    @RequestMapping("/wrtb")
-	public String wrtieboard() {
-
-		return "membership/writeboard";
-	}
-    @RequestMapping("/findpro")
-    public String findpro() {
-    	
-    	return "findpro";
-    }
-    @RequestMapping("/login")
-	public String loginForm() {
-
-		return "loginform";
+	// 메인페이지
+	@RequestMapping("/")
+	public String root() throws Exception {
+		return "main";
 	}
 
-    @RequestMapping("/fail")
-    public String fail() {
-    	
-    	return "fail";
-    }
-    @RequestMapping("/inte")
-    public String logirm() {
-    	
-    	return "membership/introduce";
-    }
-    @RequestMapping("/ad3")
-    public String ad3() {
-    	
-    	return "admin/adpage3";
-    }
-    @RequestMapping("/ad2")
-   	public String ad2() {
+// ---------------------회원관리-------------------------
+	// 회원가입
+	@RequestMapping("/register")
+	public String signup() {
 
-   		return "admin/adpage2";
-   	}
-    @RequestMapping("/writeform")
-    public String write() {
-       
-       return "write";
-    }
- @RequestMapping("/viewboard")
-    public String view() {
-
-       return "board/viewboard";
-    }
-    
-    @RequestMapping("/editboard")
-    public String edit() {
-
-       return "board/editboard";
-    }
-    @RequestMapping("/ad1")
-   	public String ad1() {
-
-   		return "admin/adpage1";
-   	}
-    @RequestMapping("/register")
-	public String register() {
-
-		return "signupform";
+		return "login_signupform";
 	}
-	@RequestMapping("/uploadForm")
-	public String uploadForm() {
 
-		return "FileUpload/fileForm";
+	// 로그인
+	@RequestMapping("/login")
+	public String LoginForm() {
+
+		return "login_form";
 	}
-	@RequestMapping("/free")
-	   public String freeboard() {
 
-	      return "board/freeboard";
-	   }
+	// 로그인 -에러
+	@RequestMapping("/fail")
+	public String Loginfail() {
+
+		return "login_fail";
+	}
+
+	// 로그인 -가입정보찾기
+	@RequestMapping("/findpro")
+	public String Loginfindpro() {
+
+		return "login_findpro";
+	}
+
+// ---------------------내정보수정-------------------------
+	// 내정보 -간단히보기
 	@RequestMapping("/mypage")
-	public String mypage() {
-		
+	public String Mypage() {
+
 		return "membership/mypage";
 	}
-	@RequestMapping("/ques")
-	public String questionboard	() {
-		
-		return "board/questionboard";
-	}
+
+	// 내정보 -자세히보기
 	@RequestMapping("/prf")
-	public String profile() {
+	public String Profile() {
 
 		return "membership/profile";
 	}
+
+	// 내정보 -수정하기
 	@RequestMapping("/profileC")
-	public String profileC() {
+	public String ProfileEdit() {
 
 		return "membership/profile2";
 	}
 
-	@RequestMapping("/uploadOk")
-	public String uploadOk(HttpServletRequest request) {
-	    try {
-	    	String filePath = "C:/DevData/SpringBoot/pro4/src/main/webapp/img/profIMG";
-	        System.out.println(filePath);
 
-	        // Retrieves <input type="file" name="files" multiple="true">
-	        List<Part> fileParts = request.getParts().stream()
-	                .filter(part -> "filename".equals(part.getName()) && part.getSize() > 0)
-	                .collect(Collectors.toList());
-	        
-	        for (Part filePart : fileParts) {
-	            String fileName = Paths.get(filePart.getSubmittedFileName())
-	                    .getFileName().toString();
-	            
-	            // Get a unique file name
-	            String uniqueFileName = getUniqueFileName(filePath, fileName);
+// ---------------------관리자페이지-------------------------
+	// 관리자3 -글삭제
+	@RequestMapping("/ad3")
+	public String ad3() {
 
-	            String dst = filePath + "\\" + uniqueFileName;
-	            
-	            try (BufferedInputStream fin = new BufferedInputStream(filePart.getInputStream());
-	                 BufferedOutputStream fout = new BufferedOutputStream(new FileOutputStream(dst))) {
-	                int data;
-	                while (true) {
-	                    data = fin.read();
-	                    if (data == -1)
-	                        break;
-	                    fout.write(data);
-	                }
-	            } catch (IOException e) {
-	                e.printStackTrace();
-	            }
-	            System.out.println("Uploaded profile_Filename: " + uniqueFileName);
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-	    return "membership/profile2";
+		return "admin/adpage3";
 	}
 
-	private String getUniqueFileName(String filePath, String originalFileName) {
-	    String fileName = originalFileName;
-	    String extension = "";
+	// 관리자2 -정보출력
+	@RequestMapping("/ad2")
+	public String ad2() {
 
-	    int dotIndex = originalFileName.lastIndexOf(".");
-	    if (dotIndex >= 0) {
-	        extension = originalFileName.substring(dotIndex);
-	        fileName = originalFileName.substring(0, dotIndex);
-	    }
+		return "admin/adpage2";
+	}
 
-	    String dst = filePath + "\\" + fileName + extension;
-	    int count = 1;
+	// 관리자1 -회원정보조회
+	@RequestMapping("/ad1")
+	public String ad1() {
 
-	    while (new File(dst).exists()) {
-	        fileName = originalFileName.substring(0, dotIndex) + "_" + count;
-	        dst = filePath + "\\" + fileName + extension;
-	        count++;
-	    }
+		return "admin/adpage1";
+	}
 
-	    return fileName + extension;
+// ---------------------동아리게시판-------------------------
+	// 동아리
+	@RequestMapping("/dongboard")
+	public String dongboard() {
+
+		return "board/dong/dongboard";
+	}
+
+	// 동아리B -글쓰기
+	@RequestMapping("/dongwriteform")
+	public String dongwrite() {
+
+		return "board/dong/dongwrite";
+	}
+
+	// 동아리B -글보기
+	@RequestMapping("/dongviewboard")
+	public String dongview() {
+
+		return "board/dong/dongviewboard";
+	}
+
+	// 동아리B -글수정
+	@RequestMapping("/dongeditboard")
+	public String dongedit() {
+
+		return "board/dong/dongeditboard";
+	}
+
+// ---------------------공지사항-------------------------
+	// 공지사항B
+	@RequestMapping("/noticeboard")
+	public String noticeboard() {
+
+		return "board/notice/noticeboard";
+	}
+
+	// 공지사항B -글보기
+	@RequestMapping("/noticeviewboard")
+	public String noticeview() {
+
+		return "board/notice/noticeviewboard";
+	}
+
+	// 공지사항B -글수정
+	@RequestMapping("/noticeeditboard")
+	public String noticeedit() {
+
+		return "board/notice/noticeeditboard";
+	}
+
+	// 공지사항B -글쓰기
+	@RequestMapping("/noticewrite")
+	public String noticewrite() {
+
+		return "board/notice/noticewrite";
+	}
+
+// ---------------------자유게시판-------------------------
+	// 자유게시판B
+	@RequestMapping("/freeboard")
+	public String freeboard() {
+
+		return "freeboard";
+	}
+
+	// 자유게시판B -글쓰기
+	@RequestMapping("/freewriteform")
+	public String freeWrite() {
+
+		return "board/free/freeWrite";
+	}
+
+	// 자유게시판B -글보기
+	@RequestMapping("/freeViewboard")
+	public String freeViewboard() {
+
+		return "board/free/freeViewboard";
+	}
+
+	// 자유게시판B -글수정
+	@RequestMapping("/freeEditboard")
+	public String freeEditboard() {
+
+		return "board/free/freeEditboard";
+	}
+	
+// ---------------------ㅁㅁㅁㅁ-------------------------
+	// 메인 -소개
+	@RequestMapping("/inte")
+	public String logirm() {
+
+		return "membership/introduce";
+	}
+
+	@RequestMapping("/review")
+	public String reviewboard() {
+
+		return "membership/reviewboard";
+	}
+
+	@RequestMapping("/noti")
+	public String notification() {
+
+		return "board/notification";
 	}
 }

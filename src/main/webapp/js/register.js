@@ -24,7 +24,7 @@ async function registerDoc() {
     var birth = $('#birth').val();
     var address = $('#address').val();
     var detailAddress = $('#detailAddress').val();
-    var rank = $('#rank').val(); // 등급 뺴야함
+    var rank = $('#rank'); // 등급 뺴야함
     var interest = $('#interest').val();
     var phone = $('#phone').val();
     var img=$('#img');
@@ -84,7 +84,7 @@ async function registerDoc() {
             birth: birth,
             address: address,
             detailAddress: detailAddress,
-            rank: rank,
+            rank: "1",
             interest: interest,
             phone: phone,
             img: "defaultIMG"

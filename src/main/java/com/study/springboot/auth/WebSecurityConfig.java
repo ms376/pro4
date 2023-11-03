@@ -30,27 +30,28 @@ public class WebSecurityConfig {
 				.authorizeHttpRequests(request -> request.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
 //        			/ : 모든 요청명에 대해 권한 없이 접근할 수 있다.
 						.requestMatchers("/").permitAll()
-						.requestMatchers("/free").permitAll()
+						.requestMatchers("/freeboard").permitAll()
 						.requestMatchers("/register").permitAll()
 						.requestMatchers("/findpro").permitAll()
 						.requestMatchers("/fail").permitAll()
 						// 정적 리소스(static하위) 에는 권한없이 접근할 수 있다.
 						.requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
 						// USER,ADMIN 권한 중 하나가 있어야 접근할 수 있다.
-						.requestMatchers("/club").hasAnyRole("USER", "ADMIN") // 두권한 허용
-						.requestMatchers("/int").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-						.requestMatchers("/review").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-						.requestMatchers("/wrtb").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-						.requestMatchers("/writeform").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-						.requestMatchers("/viewboard").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-						.requestMatchers("/editboard").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-						.requestMatchers("/register").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-						.requestMatchers("/uploadForm").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-						.requestMatchers("/free").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-						.requestMatchers("/ques").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-						.requestMatchers("/mypage").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-						.requestMatchers("/prf").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-						.requestMatchers("/profileC").hasAnyRole("USER", "ADMIN") // 두권한만 허용
+						.requestMatchers("/**").hasAnyRole("USER", "ADMIN") // 두권한 허용
+//						.requestMatchers("/club").hasAnyRole("USER", "ADMIN") // 두권한 허용
+//						.requestMatchers("/review").hasAnyRole("USER", "ADMIN") // 두권한만 허용
+//						.requestMatchers("/inte").hasAnyRole("USER", "ADMIN") // 두권한만 허용
+//						.requestMatchers("/wrtb").hasAnyRole("USER", "ADMIN") // 두권한만 허용
+//						.requestMatchers("/writeform").hasAnyRole("USER", "ADMIN") // 두권한만 허용
+//						.requestMatchers("/viewboard").hasAnyRole("USER", "ADMIN") // 두권한만 허용
+//						.requestMatchers("/editboard").hasAnyRole("USER", "ADMIN") // 두권한만 허용
+//						.requestMatchers("/register").hasAnyRole("USER", "ADMIN") // 두권한만 허용
+//						.requestMatchers("/uploadForm").hasAnyRole("USER", "ADMIN") // 두권한만 허용
+//						.requestMatchers("/free").hasAnyRole("USER", "ADMIN") // 두권한만 허용
+//						.requestMatchers("/ques").hasAnyRole("USER", "ADMIN") // 두권한만 허용
+//						.requestMatchers("/mypage").hasAnyRole("USER", "ADMIN") // 두권한만 허용
+//						.requestMatchers("/prf").hasAnyRole("USER", "ADMIN") // 두권한만 허용
+//						.requestMatchers("/profileC").hasAnyRole("USER", "ADMIN") // 두권한만 허용
 						// ADMIN 권한 만 접근할 수 있다.
 						.requestMatchers("/ad1").hasRole("ADMIN") // ADMIN만 허용
 						.requestMatchers("/ad2").hasRole("ADMIN") // ADMIN만 허용
