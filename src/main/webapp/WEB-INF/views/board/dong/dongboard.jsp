@@ -89,8 +89,19 @@ document.addEventListener('DOMContentLoaded', function () {
 								// 로그인 세션스토리지 초기화(로그아웃)
 								async
 								function logoutDoc() {
+									fetch('/logout', {
+								        method: 'GET',
+								    })
+								    .then(response => {
+								        if (response.ok) {
+								            // 로그아웃이 성공한 경우, 리다이렉트할 페이지로 이동
 									sessionStorage.clear();
-									window.location.href = '/';
+								            window.location.href = '/';
+								        }
+								    })
+								    .catch(error => {
+								        console.error('로그아웃 실패:', error);
+								    });
 								}
 							</script>
 						</ul>
@@ -223,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			<div class="row">
 				<div class="col-md-12 text-white text-center">
 					<h2 class="en1">
-						<img src="mainl.png">
+						<img src="img/mam.png">
 					</h2>
 					<!-- image or text  -->
 					<p class="ks2 f12"></p>

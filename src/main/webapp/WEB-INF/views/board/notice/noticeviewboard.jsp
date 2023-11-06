@@ -1,14 +1,14 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="jakarta.tags.core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="module" src=../js/dongview.js></script>
+<script type="module" src=../js/noticeview.js></script>
 <link href="../js/main.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="//use.fontawesome.com/releases/v5.5.0/css/all.css"
@@ -196,44 +196,21 @@ document.addEventListener('DOMContentLoaded', function () {
 					<table class="table table-bordered table-striped"
 						style="width: 100%;">
 						<tr>
+							<th style="width: 5%;"></th>
 							<th style="width: 5%;">번호</th>
 							<th style="width: 10%;">작성자</th>
-							<th style="width: 10%;">제목</th>
-							<th style="width: 25%;">내용</th>
+							<th style="width: 15%;">제목</th>
+							<th style="width: 35%;">내용</th>
 							<th style="width: 10%;">작성일</th>
-							<th style="width: 5%;"></th>
-							<th style="width: 5%;">좋아요</th>
-							<th style="width: 5%;"></th>
-							<th style="width: 15%;">참여</th>
 							<th style="width: 5%;">조회수</th>
-							<th style="width: 5%;"></th>
-							<th style="width: 5%;"></th>
 						</tr>
 						<tbody id="table-body2"></tbody>
 						<!-- 여기에 댓글 목록이 표시됩니다. -->
 					</table>
-					<div>
-						<table class="table table-bordered table-striped"
-							style="width: 50%;">
-							<tr>
-								<th style="width: 10%;">아이디</th>
-								<th style="width: 35%;">내용</th>
-								<th style="width: 15%;">날짜</th>
-								<th style="width: 5%;"></th>
-							</tr>
-							<tbody id="comments-table">
-								<!-- 여기에 댓글 목록이 표시됩니다. -->
-							</tbody>
-						</table>
-						<input type="text" id="commentInput" placeholder="댓글을 입력하세요">
-						<button id="addCommentBtn">댓글 추가</button>
-					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<div class="row padding-top-20"></div>
 	<div class="d-none d-sm-block margin-top-30"></div>
 	<div class="margin-bottom-40"></div>
@@ -278,5 +255,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		src="../js/dong/theme/theme_wide_17/assets/countdown/js/jquery.final-countdown.js"></script>
 	<script type="text/javascript"
 		src="../js/dong/theme/theme_wide_17/js/bootstrap-dropdownhover.js"></script>
+	<script type="text/javascript"
+		src="../js/dong/theme/theme_wide_17/js/custom.js"></script>
 </body>
 </html>

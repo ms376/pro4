@@ -37,6 +37,11 @@ public class WebSecurityConfig {
 						// 정적 리소스(static하위) 에는 권한없이 접근할 수 있다.
 						.requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
 						// USER,ADMIN 권한 중 하나가 있어야 접근할 수 있다.
+						.requestMatchers("/board/notice/noticeeditboard").hasRole("ADMIN") // ADMIN만 허용
+						.requestMatchers("/board/notice/noticewritetboard").hasRole("ADMIN") // ADMIN만 허용
+						.requestMatchers("/ad1").hasRole("ADMIN") // ADMIN만 허용
+						.requestMatchers("/ad2").hasRole("ADMIN") // ADMIN만 허용
+						.requestMatchers("/ad3").hasRole("ADMIN") // ADMIN만 허용
 						.requestMatchers("/**").hasAnyRole("USER", "ADMIN") // 두권한 허용
 //						.requestMatchers("/club").hasAnyRole("USER", "ADMIN") // 두권한 허용
 //						.requestMatchers("/review").hasAnyRole("USER", "ADMIN") // 두권한만 허용
@@ -53,9 +58,6 @@ public class WebSecurityConfig {
 //						.requestMatchers("/prf").hasAnyRole("USER", "ADMIN") // 두권한만 허용
 //						.requestMatchers("/profileC").hasAnyRole("USER", "ADMIN") // 두권한만 허용
 						// ADMIN 권한 만 접근할 수 있다.
-						.requestMatchers("/ad1").hasRole("ADMIN") // ADMIN만 허용
-						.requestMatchers("/ad2").hasRole("ADMIN") // ADMIN만 허용
-						.requestMatchers("/ad3").hasRole("ADMIN") // ADMIN만 허용
 				);
 
 		// 로그인 페이지 설정(세큐리티의 디폴트 페이지를 사용한다.)

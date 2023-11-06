@@ -2,14 +2,14 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebas
 import { getFirestore, collection, addDoc, getDoc, getDocs, doc, deleteDoc, updateDoc, query, orderBy } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
 
 var firebaseConfig = {
-	apiKey: "AIzaSyCYTzwY4INgoQAJ_e8ZdxlrOrJyIsb0iEA",
-	authDomain: "pro4-3a50f.firebaseapp.com",
-	databaseURL: "https://pro4-3a50f-default-rtdb.firebaseio.com",
-	projectId: "pro4-3a50f",
-	storageBucket: "pro4-3a50f.appspot.com",
-	messagingSenderId: "307587646265",
-	appId: "1:307587646265:web:1a1d9ab9129d2c2956dee8",
-	measurementId: "G-LMXETWQJGT"
+    apiKey: "AIzaSyBgYONiG8ewQcSMkja7VwIYFhG0R_cMqNU",
+    authDomain: "pro4-186df.firebaseapp.com",
+    databaseURL: "https://pro4-186df-default-rtdb.firebaseio.com",
+    projectId: "pro4-186df",
+    storageBucket: "pro4-186df.appspot.com",
+    messagingSenderId: "713320912003",
+    appId: "1:713320912003:web:e7e0b4fdd9f482e150b7b6",
+    measurementId: "G-K5591GZDBM"
 };
 var app = initializeApp(firebaseConfig);
 var db = getFirestore(app);
@@ -19,9 +19,9 @@ var userId = userData ? JSON.parse(userData).id : null;
 async function showComments() {
     const params = new URLSearchParams(window.location.search);
     const docId = params.get('docId');
-    const commentsRef = collection(db, 'boards', docId, 'comments');
+    const commentsRef = collection(db, 'reviewboards', docId, 'comments');
     const querySnapshot = await getDocs(query(commentsRef, orderBy('date', 'asc')));
-   	const tableBody2 = document.getElementById('comments-table');
+	const tableBody2 = document.getElementById('comments-table');
     tableBody2.innerHTML = ''; // 기존 댓글 초기화
 
     querySnapshot.forEach((doc) => {
@@ -29,7 +29,7 @@ async function showComments() {
         var date = comment.date ? comment.date.toDate() : null; // Timestamp를 JavaScript Date로 변환
     	var formattedDate = date ? formatDate(date) : "날짜 없음";
         const commentstable =`<tr>
-                         <td>${comment.user}</td>
+        					  <td>${comment.user}</td>
                               <td>${comment.content}</td>
                               <td>${formattedDate}</td>
                               <td><button class="delete-comment-button" data-commentid="${doc.id}">삭제</button></td>
@@ -37,26 +37,23 @@ async function showComments() {
                               `;
         tableBody2.insertAdjacentHTML('beforeend', commentstable);
     });
-      // 삭제 버튼에 이벤트 리스너 추가
-   const deleteCommentButtons = document.querySelectorAll('.delete-comment-button');
-   deleteCommentButtons.forEach((button) => {
-       button.addEventListener('click', async () => {
-           const commentId = button.getAttribute('data-commentid');
-           const shouldDelete = await checkCommentOwnership(commentId);
-           if (shouldDelete) {
-               deleteComment(docId, commentId);
-           }
-       });
-   });
+		// 삭제 버튼에 이벤트 리스너 추가
+	const deleteCommentButtons = document.querySelectorAll('.delete-comment-button');
+	deleteCommentButtons.forEach((button) => {
+	    button.addEventListener('click', async () => {
+	        const commentId = button.getAttribute('data-commentid');
+	        const shouldDelete = await checkCommentOwnership(commentId);
+	        if (shouldDelete) {
+	            deleteComment(docId, commentId);
+	        }
+	    });
+	});
 }
-
-showComments();
-
 // 댓글 소유권 확인
 async function checkCommentOwnership(commentId) {
-   const params = new URLSearchParams(window.location.search);
-   const docId = params.get('docId');
-    const commentRef = doc(db, 'boards', docId, 'comments', commentId);
+	const params = new URLSearchParams(window.location.search);
+	const docId = params.get('docId');
+    const commentRef = doc(db, 'reviewboards', docId, 'comments', commentId);
     try {
         const commentSnapshot = await getDoc(commentRef);
         if (commentSnapshot.exists()) {
@@ -80,7 +77,7 @@ async function checkCommentOwnership(commentId) {
 // 댓글 삭제
 async function deleteComment(docId, commentId) {
     try {
-        await deleteDoc(doc(db, 'boards', docId, 'comments', commentId));
+        await deleteDoc(doc(db, 'reviewboards', docId, 'comments', commentId));
         alert('댓글이 성공적으로 삭제되었습니다.');
         // 댓글을 삭제한 후 댓글 표시 함수 호출
         showComments();
@@ -93,7 +90,7 @@ async function deleteComment(docId, commentId) {
 async function showDocumentFields() {
     const params = new URLSearchParams(window.location.search);
     const docId = params.get('docId'); 
-    const docRef = doc(db, 'boards', docId);
+    const docRef = doc(db, 'reviewboards', docId);
 	
     try {
         const docSnap = await getDoc(docRef);
@@ -103,34 +100,36 @@ async function showDocumentFields() {
             var formattedDate = date ? formatDate(date) : "날짜 없음";
            
             var loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
-          	var userId = loggedInUser ? loggedInUser.id : null;
+    		var userId = loggedInUser ? loggedInUser.id : null;
             
             const tableBody2 = document.getElementById('table-body2');
             const tableRow = `<table><tr>
                                  <td>${data.num}</td>
-                                 <td>${data.id}</td>
+                                 <td>${data.zone}</td>
+                                 <td>${data.interest}</td>
+                                 <td>${data.Dname}</td>
+                                 <td>???</td>
                                  <td>${data.title}</td>
                                  <td>${data.content}</td>
                                  <td>${formattedDate}</td> 
                                  <td><button class="like-button" data-docid="${docId}">좋아요</button></td>
                                  <td>좋아요 수: <span id="like-count">${data.likes || 0}</span></td>
-                                 <td id="count-cell">${data.count}</td> 
+                                 <td id="count-cell">${data.count}</td>
                                  <td><button class="delete-button" data-docid="${doc.id}">삭제</button></td>                     
                                	 <td><button class="edit-button" data-docid="${doc.id}">수정</button></td>
                                </tr></table>`;
             tableBody2.insertAdjacentHTML('beforeend', tableRow);
             
-            // "좋아요" 버튼에 이벤트 리스너를 추가하여 좋아요 수를 업데이트합니다.
-            const likeButton = document.querySelector('.like-button');
-            likeButton.addEventListener('click', async () => {
-				userData = sessionStorage.getItem("loggedInUser");
-				const shouldLike = await checkSession2();
-				if(shouldLike) {
-					likePost(docId, userId);
-				}
-                
-            });
-   
+             // "좋아요" 버튼에 이벤트 리스너를 추가하여 좋아요 수를 업데이트합니다.
+                const likeButton = document.querySelector('.like-button');
+                likeButton.addEventListener('click', async () => {
+					userData = sessionStorage.getItem("loggedInUser");
+					const shouldLike = await checkSession2();
+					if(shouldLike) {
+						likePost(docId, userId);
+					}
+                });
+
             // "삭제" 버튼에 이벤트 리스너를 추가하여 참여 동작을 수행합니다.
             const deleteButtons = document.querySelectorAll('.delete-button');
 	        deleteButtons.forEach((button) => {
@@ -147,7 +146,7 @@ async function showDocumentFields() {
 	        const contentCells = document.querySelectorAll('.edit-button');
 		    contentCells.forEach((cell) => {
 		          cell.addEventListener('click', () => {
-		              window.location.href = `/freeEditboard?docId=${docId}`;
+		              window.location.href = `/revieweditboard?docId=${docId}`;
 		              
 		          });
 		      });
@@ -166,13 +165,14 @@ async function showDocumentFields() {
     } catch (error) {
         console.error("문서 가져오기 중 오류 발생:", error);
     }
+    showComments();
 }
 
 showDocumentFields();
 
 // 좋아요 기능 추가
 async function likePost(docId, userId) {
-    const docRef = doc(db, 'boards', docId);
+    const docRef = doc(db, 'reviewboards', docId);
     
     try {
         const docSnap = await getDoc(docRef);
@@ -217,16 +217,15 @@ async function likePost(docId, userId) {
     }
 }
 
-
 // '삭제' 버튼 클릭 이벤트 핸들러
 async function deleteDocument(docId) {
-    try {;
+    try {
 		console.log("삭제할 문서 ID:", docId);
-        const result= await deleteDoc(doc(db, 'boards', docId));
+        const result= await deleteDoc(doc(db, 'reviewboards', docId));
         console.log("삭제 결과:", result);
         console.log("문서가 성공적으로 삭제되었습니다.");
         alert("삭제가 완료되었습니다.");
-        window.location.href = "/freeboard";
+        window.location.href = "/review";
         return;
     } catch (error) {
         console.log("문서 삭제 중 오류가 발생했습니다:");
@@ -262,12 +261,12 @@ async function checkSession() {
     const docId = params.get('docId');
     
     try {
-        const docSnap = await getDoc(doc(db, 'boards', docId));
+        const docSnap = await getDoc(doc(db, 'reviewboards', docId));
         if (docSnap.exists()) {
             const data = docSnap.data();
             if (data.id !== id) {
                 alert("본인만 삭제 가능합니다.");
-                window.location.href = `/freeViewboard?docId=${docId}`;
+                window.location.href = `/reviewviewboard?docId=${docId}`;
                 return false;
             }
             return true;
@@ -289,15 +288,16 @@ async function addComment(commentInput) {
     const user = loggedInUser ? loggedInUser : { id: 'Anonymous' }; // 비로그인 사용자의 경우 'Anonymous'로 설정
     
     if (commentInput) {
-      
+		
         const commentData = {
             content: commentInput,
             date: new Date(),
             user: user.id
         };
+        
 
         try {
-            const commentsRef = collection(db, 'boards', docId, 'comments');
+            const commentsRef = collection(db, 'reviewboards', docId, 'comments');
             await addDoc(commentsRef, commentData);
             alert("댓글 작성이 완료되었습니다.");
             // 댓글을 추가한 후 댓글 표시 함수 호출
@@ -310,13 +310,15 @@ async function addComment(commentInput) {
     }
 }
 
+
+
 $(document).ready(function() {
     $('#addCommentBtn').click(function() { 
         const commentInput = $('#commentInput').val(); // 입력란의 값을 가져옵니다.
-        if (commentInput.trim() === '') {
+			 if (commentInput.trim() === '') {
             alert('댓글 내용을 입력해주세요.');
             return;
-        }
+        	}       
         checkSession2().then((shouldAddComment) => {
             if (shouldAddComment) {
                 addComment(commentInput); // addComment 함수로 전달합니다.

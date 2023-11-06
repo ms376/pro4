@@ -89,8 +89,19 @@ document.addEventListener('DOMContentLoaded', function () {
 								// 로그인 세션스토리지 초기화(로그아웃)
 								async
 								function logoutDoc() {
+									fetch('/logout', {
+								        method: 'GET',
+								    })
+								    .then(response => {
+								        if (response.ok) {
+								            // 로그아웃이 성공한 경우, 리다이렉트할 페이지로 이동
 									sessionStorage.clear();
-									window.location.href = '/';
+								            window.location.href = '/';
+								        }
+								    })
+								    .catch(error => {
+								        console.error('로그아웃 실패:', error);
+								    });
 								}
 							</script>
 						</ul>
@@ -218,34 +229,35 @@ document.addEventListener('DOMContentLoaded', function () {
 				<div class="row">
 					<div class="col-md-12 main_one_title ks4">공지사항</div>
 				</div>
-				<a href="/noticeboard" class="one_more"><span class="sound_only">게시판1세부</span><i
+				<a href="/noticeboard" class="one_more"> <span class="sound_only"></span> <i
 					class="fa fa-plus" aria-hidden="true"
-					style="font-size: 22px; line-height: 1px;"></i><span
+					style="font-size: 22px; line-height: 1px;"></i> <span
 					class="sound_only"> 더보기</span></a>
 				<div class="lat_list_one">
 					<ul>
-						<li class="ks4"><a href="#">동아리동아리동아리1</a> <span
-							class="lt_date hidden-xs hidden-sm">06-16</span></li>
-						<li class="ks4"><a href="#">동아리동아리동아리1</a> <span
-							class="lt_date hidden-xs hidden-sm">05-18</span></li>
+						<table>
+							<thead>
+							<tbody id="table-body3">
+							</tbody>
+						</table>
 					</ul>
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 				<div class="row">
-					<div class="col-md-12 main_one_title ks4">홍보/광고</div>
+					<div class="col-md-12 main_one_title ks4">동아리-홍보 게시판</div>
 				</div>
-				<a href="#" class="one_more"><span class="sound_only">게시판2</span><i
+				<a href="/dongboard" class="one_more"><span class="sound_only"></span><i
 					class="fa fa-plus" aria-hidden="true"
 					style="font-size: 22px; line-height: 1px;"></i><span
 					class="sound_only"> 더보기</span></a>
 				<div class="lat_list_one">
 					<ul>
-						<li class="ks4"><a href="#">동아리동아리동아리2</a> <span
-							class="lt_date hidden-xs hidden-sm">10-13</span></li>
-						<li class="ks4"><span class="hot_icon">N<span
-								class="sound_only">인기글</span></span><a href="#"> 인기글표시--</a> <span
-							class="lt_date hidden-xs hidden-sm">10-06</span></li>
+						<table>
+							<thead>
+							<tbody id="table-body2">
+							</tbody>
+						</table>
 					</ul>
 				</div>
 			</div>
@@ -258,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				<div class="row">
 					<div class="col-md-12 main_one_title ks4">자유게시판</div>
 				</div>
-				<a class="one_more"> <span class="sound_only">ㅇㅇㅇ</span> <i
+				<a href="/freeboard" class="one_more"> <span class="sound_only"></span> <i
 					class="fa fa-plus" aria-hidden="true"
 					style="font-size: 22px; line-height: 1px;"></i> <span
 					class="sound_only"> 더보기</span></a>
@@ -276,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				<div class="row">
 					<div class="col-md-12 main_one_title ks4">후기/리뷰</div>
 				</div>
-				<a href="#" class="one_more"><span class="sound_only">게시판4</span><i
+				<a class="one_more"><span class="sound_only">게시판4</span><i
 					class="fa fa-plus" aria-hidden="true"
 					style="font-size: 22px; line-height: 1px;"></i><span
 					class="sound_only"> 더보기</span></a>
@@ -298,7 +310,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			<div class="row">
 				<div class="col-md-12 text-white text-center">
 					<h2 class="en1">
-						<img src="mainl.png">
+<!-- 					<a href="https://kr.freepik.com/free-vector/hand-drawn-flat-design-people-waving-illustration_21559261.htm#query=%EB%8F%99%EC%95%84%EB%A6%AC&position=0&from_view=search&track=sph">작가 pikisuperstar</a> 출처 Freepik -->
+						<img src="img/mam.png">
 					</h2>
 					<!-- image or text  -->
 					<p class="ks2 f12"></p>

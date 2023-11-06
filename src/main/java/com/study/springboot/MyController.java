@@ -6,10 +6,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MyController {
 
-	// 메인페이지
+	// 메인
 	@RequestMapping("/")
 	public String root() throws Exception {
 		return "main";
+	}
+	// 메인 -소개
+	@RequestMapping("/inte")
+	public String logirm() {
+
+		return "membership/introduce";
 	}
 
 // ---------------------회원관리-------------------------
@@ -17,7 +23,7 @@ public class MyController {
 	@RequestMapping("/register")
 	public String signup() {
 
-		return "login_signupform";
+		return "signupform";
 	}
 
 	// 로그인
@@ -62,7 +68,6 @@ public class MyController {
 
 		return "membership/profile2";
 	}
-
 
 // ---------------------관리자페이지-------------------------
 	// 관리자3 -글삭제
@@ -172,24 +177,33 @@ public class MyController {
 
 		return "board/free/freeEditboard";
 	}
-	
+
 // ---------------------ㅁㅁㅁㅁ-------------------------
-	// 메인 -소개
-	@RequestMapping("/inte")
-	public String logirm() {
-
-		return "membership/introduce";
-	}
-
+	// 리뷰
 	@RequestMapping("/review")
 	public String reviewboard() {
 
-		return "membership/reviewboard";
+		return "board/review/reviewboard";
 	}
 
-	@RequestMapping("/noti")
-	public String notification() {
+	// 리뷰 쓰기
+	@RequestMapping("/reviewwriteform")
+	public String reviewwrite() {
 
-		return "board/notification";
+		return "board/review/reviewwrite";
+	}
+
+	// 리뷰 보기
+	@RequestMapping("/reviewviewboard")
+	public String reviewview() {
+
+		return "board/review/reviewviewboard";
+	}
+
+	// 리뷰 수정
+	@RequestMapping("/revieweditboard")
+	public String reviewedit() {
+
+		return "board/review/revieweditboard";
 	}
 }

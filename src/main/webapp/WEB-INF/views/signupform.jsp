@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,12 +9,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>프로젝트3</title>
 <script type="module" src="../js/register.js"></script>
+<script src="../js/address.js"></script>
 <script src="https://code.jquery.com/jquery.js"></script>
 <link href="../js/main.css" rel="stylesheet" type="text/css">
 <!-- 주소 JS -->
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="../js/address.js"></script>
 <link rel="stylesheet"
 	href="//use.fontawesome.com/releases/v5.5.0/css/all.css"
 	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
@@ -94,8 +95,19 @@ document.addEventListener('DOMContentLoaded', function () {
 								// 로그인 세션스토리지 초기화(로그아웃)
 								async
 								function logoutDoc() {
+									fetch('/logout', {
+								        method: 'GET',
+								    })
+								    .then(response => {
+								        if (response.ok) {
+								            // 로그아웃이 성공한 경우, 리다이렉트할 페이지로 이동
 									sessionStorage.clear();
-									window.location.href = '/';
+								            window.location.href = '/';
+								        }
+								    })
+								    .catch(error => {
+								        console.error('로그아웃 실패:', error);
+								    });
 								}
 							</script>
 						</ul>
@@ -180,7 +192,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	<div class="ety-main"></div>
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<script src="http://smy.kr/js/jquery.register_form.js"></script>
 	<div class="container ety-mt margin-bottom-50 padding-top-50">
 		<input type="hidden" name="w" value=""> <input type="hidden"
 			name="url" value="%2Fbbs%2Fregister_form.php"> <input
@@ -196,8 +207,8 @@ document.addEventListener('DOMContentLoaded', function () {
 					<table class="userTable">
 						<tr>
 							<td class="userTit"><span class="c_imp"></span>아이디</td>
-							<td class="userVal"><input type="text" id="id" value=""
-								maxlength="15" class="userInput" style="width: 120px;" /> <span
+							<td class="userVal">
+							<input type="text" id="id" value=""	maxlength="15" class="userInput" style="width: 120px;" /> <span
 								style="margin-left: 10px;"></span> <span style="color: #888888;"></span>
 							</td>
 						</tr>
@@ -235,13 +246,17 @@ document.addEventListener('DOMContentLoaded', function () {
 						</script>
 						<tr>
 							<td class="userTit"><span style="margin-left: 10px;"></span>생년월일</td>
-							<td class="userVal"><label><input type="radio"
-									name="sex" value="남자" id="sex" checked>남자</label> <label><input
-									type="radio" name="sex" id="sex" value="여자">여자</label> <span
-								style="margin-left: 20px;"></span> <input type="text" id="birth"
-								oninput='numlimit(this, 6)' class="userInput w40" maxlength="6" />
-								<span style="margin: 0 5px 0 1px">년</span> <span
-								style="margin: 0 0 0 3px; color: #888888;">(예 : 980101)</span></td>
+							<td class="userVal">
+							<label>
+							<input type="radio"	name="sex" value="남자" id="sex" checked>남자
+							</label> 
+							<label>
+							<input type="radio" name="sex" id="sex" value="여자">여자
+							</label> 
+							<span style="margin-left: 20px;"></span> 
+							<input type="text" id="birth" oninput='numlimit(this, 6)' class="userInput w40" maxlength="6" />
+							<span style="margin: 0 5px 0 1px">년</span> 
+							<span style="margin: 0 0 0 3px; color: #888888;">(예 : 980101)</span></td>
 						</tr>
 						<tr>
 							<td class="userTit"><span class="c_imp"></span>닉네임</td>
@@ -270,16 +285,16 @@ document.addEventListener('DOMContentLoaded', function () {
 								type="text" id="postcode" placeholder="우편번호" disabled>(우편번호)</td>
 						</tr>
 						<tr>
-							<td class="userVal"><input type="text" id="address"
-								placeholder="주소" disabled> <input type="text"
-								id="detailAddress" placeholder="상세주소"> <input
-								type="text" id="extraAddress" placeholder="참고항목" disabled>
-								<span style="margin-left: 10px;"></span></td>
+							<td class="userVal"><input type="text" id="address"	placeholder="주소" disabled> 
+							<input type="text" id="detailAddress" placeholder="상세주소"> 
+							<input type="text" id="extraAddress" placeholder="참고항목" disabled>
+							<span style="margin-left: 10px;"></span>
+							</td>
 						</tr>
 						<tr>
 							<td class="userTit"><span class="c_imp"></span> 관심분야</td>
-							<td class="userVal" style="padding: 3px 0 3px 10px;"><select
-								id="interest" class="userSelect w300">
+							<td class="userVal" style="padding: 3px 0 3px 10px;">
+							<select	id="interest" class="userSelect w300">
 									<option value="">::관심분야 선택::</option>
 									<option value="스포츠">스포츠</option>
 									<option value="예술활동">예술활동</option>
@@ -297,18 +312,12 @@ document.addEventListener('DOMContentLoaded', function () {
 						</script>
 					</table>
 				</fieldset>
+				<div class="btn_confirm">
+					<a href="/" class="btn_cancel">돌아가기</a>
+					<button id="write" class="btn_submit">회원가입</button>
+					
+				</div>
 			</div>
-		</div>
-		<script>
-			$(function() {
-				font_resize("container",
-						get_cookie("ck_font_resize_rmv_class"),
-						get_cookie("ck_font_resize_add_class"));
-			});
-		</script>
-		<div class="btn_confirm">
-			<a href="/" class="btn_cancel">돌아가기</a>
-			<button type="submit" id="register" class="btn_submit">회원가입</button>
 		</div>
 	</div>
 	<div class="row padding-top-20"></div>
@@ -319,7 +328,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			<div class="row">
 				<div class="col-md-12 text-white text-center">
 					<h2 class="en1">
-						<img src="mainl.png">
+						<img src="img/mam.png">
 					</h2>
 					<!-- image or text  -->
 					<p class="ks2 f12"></p>

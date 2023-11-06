@@ -14,20 +14,23 @@ var firebaseConfig = {
 var app = initializeApp(firebaseConfig);
 var db = getFirestore(app);
 
-function fetchDataAndFillTable() {
-	const tableBody = document.getElementById('table-body');
-	const boardsRef = collection(db, 'boards');
+function fetchDataAndFillTable(tableId, collectionName) {
+    const tableBody = document.getElementById(tableId); // tableId에 해당하는 요소를 찾음
+    const boardsRef = collection(db, collectionName);
 
-	getDocs(boardsRef).then((querySnapshot) => {
-		querySnapshot.forEach((doc) => {
-			const data = doc.data();
-			const { id, title,postdate } = data;
-			const tableRow = `<tr>
+    getDocs(boardsRef).then((querySnapshot) => {
+        tableBody.innerHTML = ''; // 기존 내용을 초기화
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            const { id, title, postdate } = data;
+            const tableRow = `<tr>
                                  <td>${id}&nbsp;&nbsp;&nbsp;${title}</td>
                                </tr>`;
-			tableBody.insertAdjacentHTML('beforeend', tableRow);
-		});
-	});
+            tableBody.insertAdjacentHTML('beforeend', tableRow);
+        });
+    });
 }
 
-fetchDataAndFillTable();
+fetchDataAndFillTable('table-body', 'boards');
+fetchDataAndFillTable('table-body2', 'dongboards');
+fetchDataAndFillTable('table-body3', 'freeboards');

@@ -1,14 +1,16 @@
+<%@ taglib uri="jakarta.tags.core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="jakarta.tags.core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<meta http-equiv="imagetoolbar" content="no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>프로젝트3</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="module" src=../js/dongview.js></script>
+<script type="module" src=../js/noticewrite.js></script>
 <link href="../js/main.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="//use.fontawesome.com/releases/v5.5.0/css/all.css"
@@ -183,55 +185,29 @@ document.addEventListener('DOMContentLoaded', function () {
 			</div>
 		</div>
 	</nav>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class="container text-center">
 		<div class="center-heading en1">
-			<br> <br> <br> <br> <br> <br> <br>
-			<h2>자유 게시판</h2>
+			<h2>공지사항 글쓰기</h2>
 			<span class="center-line"></span>
 		</div>
+	<div class="col-md-12">
+    <div style="text-align: center;">
+        <div class="table-responsive">
+            <label>제목</label>
+            <label><input type="text" id="title"></label><br>
+            <label>내용</label>
+            <label><input type="text" id="content" style="width: 300px; height: 200px;"></label><br>
+            <label><input type="button" id="write" value="작성하기"></label>
+        </div>
+    </div>
+</div>
 
-		<div class="col-md-12">
-			<div style="text-align: center;">
-				<div class="table-responsive">
-					<table class="table table-bordered table-striped"
-						style="width: 100%;">
-						<tr>
-							<th style="width: 5%;">번호</th>
-							<th style="width: 10%;">작성자</th>
-							<th style="width: 10%;">제목</th>
-							<th style="width: 25%;">내용</th>
-							<th style="width: 10%;">작성일</th>
-							<th style="width: 5%;"></th>
-							<th style="width: 5%;">좋아요</th>
-							<th style="width: 5%;"></th>
-							<th style="width: 15%;">참여</th>
-							<th style="width: 5%;">조회수</th>
-							<th style="width: 5%;"></th>
-							<th style="width: 5%;"></th>
-						</tr>
-						<tbody id="table-body2"></tbody>
-						<!-- 여기에 댓글 목록이 표시됩니다. -->
-					</table>
-					<div>
-						<table class="table table-bordered table-striped"
-							style="width: 50%;">
-							<tr>
-								<th style="width: 10%;">아이디</th>
-								<th style="width: 35%;">내용</th>
-								<th style="width: 15%;">날짜</th>
-								<th style="width: 5%;"></th>
-							</tr>
-							<tbody id="comments-table">
-								<!-- 여기에 댓글 목록이 표시됩니다. -->
-							</tbody>
-						</table>
-						<input type="text" id="commentInput" placeholder="댓글을 입력하세요">
-						<button id="addCommentBtn">댓글 추가</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
 	</div>
 
 	<div class="row padding-top-20"></div>

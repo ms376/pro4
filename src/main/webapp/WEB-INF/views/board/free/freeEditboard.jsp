@@ -89,8 +89,19 @@ document.addEventListener('DOMContentLoaded', function () {
 								// 로그인 세션스토리지 초기화(로그아웃)
 								async
 								function logoutDoc() {
+									fetch('/logout', {
+								        method: 'GET',
+								    })
+								    .then(response => {
+								        if (response.ok) {
+								            // 로그아웃이 성공한 경우, 리다이렉트할 페이지로 이동
 									sessionStorage.clear();
-									window.location.href = '/';
+								            window.location.href = '/';
+								        }
+								    })
+								    .catch(error => {
+								        console.error('로그아웃 실패:', error);
+								    });
 								}
 							</script>
 						</ul>
@@ -172,19 +183,37 @@ document.addEventListener('DOMContentLoaded', function () {
 			</div>
 		</div>
 	</nav>
-	<br><br><br><br><br><br><br><br><br>
-<table border="1" style="width: 60%; margin: 0 auto; border-collapse: collapse; margin-top: 20px;">
-    <thead>
-        <tr style="background-color: #3498db; color: white;">
-            <th style="width: 20%; padding: 10px;">아이디</th>
-            <th style="width: 40%; padding: 10px;">제목</th>
-            <th style="width: 20%; padding: 10px;">내용</th>
-            <th style="width: 20%; padding: 10px;">작성일</th>
-            <th style="width: 18%; padding: 20px;"></th>
-        </tr>
-    </thead>
-    <tbody id="table-body3"></tbody>
-</table>
+	
+		<div class="container text-center">
+	<div class="center-heading en1">
+		<br> <br> <br> <br> <br> <br> <br>
+		<h2>자유 게시판</h2>
+		<span class="center-line"></span>
+	</div>
+	
+	<div class="col-md-12">
+		<div style="text-align: center;">
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped" style="width: 100%;">
+					<thead>
+							<tr>
+								<th style="width: 15%;">아이디</th>
+								<th style="width: 18%;">제목</th>
+								<th style="width: 28%;">내용</th>
+								<th style="width: 18%;">작성일</th>
+								<th style="width: 7%;">-</th>
+							</tr>
+						</thead>
+					<tbody id="table-body3"></tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+        
+        
+        
+        
 	<div class="row padding-top-20"></div>
 	<div class="d-none d-sm-block margin-top-30"></div>
 	<div class="margin-bottom-40"></div>
@@ -193,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			<div class="row">
 				<div class="col-md-12 text-white text-center">
 					<h2 class="en1">
-						<img src="mainl.png">
+						<img src="img/mam.png">
 					</h2>
 					<!-- image or text  -->
 					<p class="ks2 f12"></p>

@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="jakarta.tags.core" prefix="c"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="module" src=../js/dongview.js></script>
+<meta http-equiv="imagetoolbar" content="no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>프로젝트3</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="module" src=../js/noticelist.js></script>
 <link href="../js/main.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="//use.fontawesome.com/releases/v5.5.0/css/all.css"
@@ -186,50 +186,42 @@ document.addEventListener('DOMContentLoaded', function () {
 	<div class="container text-center">
 		<div class="center-heading en1">
 			<br> <br> <br> <br> <br> <br> <br>
-			<h2>자유 게시판</h2>
+			<h2>동아리 게시판</h2>
 			<span class="center-line"></span>
 		</div>
-
 		<div class="col-md-12">
 			<div style="text-align: center;">
 				<div class="table-responsive">
 					<table class="table table-bordered table-striped"
 						style="width: 100%;">
-						<tr>
-							<th style="width: 5%;">번호</th>
-							<th style="width: 10%;">작성자</th>
-							<th style="width: 10%;">제목</th>
-							<th style="width: 25%;">내용</th>
-							<th style="width: 10%;">작성일</th>
-							<th style="width: 5%;"></th>
-							<th style="width: 5%;">좋아요</th>
-							<th style="width: 5%;"></th>
-							<th style="width: 15%;">참여</th>
-							<th style="width: 5%;">조회수</th>
-							<th style="width: 5%;"></th>
-							<th style="width: 5%;"></th>
-						</tr>
-						<tbody id="table-body2"></tbody>
-						<!-- 여기에 댓글 목록이 표시됩니다. -->
-					</table>
-					<div>
-						<table class="table table-bordered table-striped"
-							style="width: 50%;">
+						<thead>
 							<tr>
-								<th style="width: 10%;">아이디</th>
-								<th style="width: 35%;">내용</th>
-								<th style="width: 15%;">날짜</th>
-								<th style="width: 5%;"></th>
+								<th style="width: 3%;"></th>
+								<th style="width: 5%;">번호</th>
+								<th style="width: 10%;">글쓴이</th>
+								<th style="width: 13%;">제목</th>
+								<th style="width: 34%;">내용</th>
+								<th style="width: 13%;">작성일</th>
+								<th style="width: 7%;">조회수</th>
 							</tr>
-							<tbody id="comments-table">
-								<!-- 여기에 댓글 목록이 표시됩니다. -->
-							</tbody>
-						</table>
-						<input type="text" id="commentInput" placeholder="댓글을 입력하세요">
-						<button id="addCommentBtn">댓글 추가</button>
-					</div>
-
+						</thead>
+						<tbody id="table-body"></tbody>
+					</table>
 				</div>
+				<div id="pagination">
+					<a type="button" id="prevPage" class="btn-u btn-u-blue">이전</a> <a
+						id="pageNumbers"></a> <a type="button" id="nextPage"
+						class="btn-u btn-u-blue">다음</a>
+				</div>
+				<label for="searchInput"></label> <select>
+					<option value="작성자">작성자</option>
+					<option value="제목">제목</option>
+					<option value="내용">내용</option>
+				</select> <input type="text" id="searchInput" placeholder="검색어 입력"
+					style="margin-right: 10px;">
+				<button id="searchButton" class="btn-u btn-u-blue">검색</button>
+				<button type="button" onclick="location.href='/dongwriteform'"
+					class="btn-u btn-u-blue">글쓰기</button>
 			</div>
 		</div>
 	</div>
@@ -278,5 +270,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		src="../js/dong/theme/theme_wide_17/assets/countdown/js/jquery.final-countdown.js"></script>
 	<script type="text/javascript"
 		src="../js/dong/theme/theme_wide_17/js/bootstrap-dropdownhover.js"></script>
+	<script type="text/javascript"
+		src="../js/dong/theme/theme_wide_17/js/custom.js"></script>
 </body>
 </html>
