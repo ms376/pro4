@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.google.api.core.ApiFuture;
@@ -68,6 +69,7 @@ public class FirebaseUserDetailsService implements UserDetailsService {
 				String pw = doc.getString("pw");
 				String rank = doc.getString("rank");
 				String id = doc.getString("id");
+				
 				System.out.println(id);
 				System.out.println(rank);
 				System.out.println(pw);
@@ -76,8 +78,8 @@ public class FirebaseUserDetailsService implements UserDetailsService {
 				List<String> roles = new ArrayList<>();
 				if ("1".equals(rank)) {
 					 UserDetails user = User.builder()
-				        		.username(id)
-				        		.password(passwordEncoder().encode(pw))
+				        		.username(id)	
+				        		.password(pw)
 				        		.roles("USER")	// ROLE_USER 에서 ROLE_ 자동으로 붙는다.
 				        		.build();
 					 return user;
@@ -85,7 +87,7 @@ public class FirebaseUserDetailsService implements UserDetailsService {
 				} else if ("2".equals(rank)) {
 					UserDetails admin = User.builder()
 			        		.username(id)
-			        		.password(passwordEncoder().encode(pw))
+			        		.password(pw)
 			        		.roles("USER","ADMIN")	
 			        		.build();
 					return admin;
@@ -107,8 +109,9 @@ public class FirebaseUserDetailsService implements UserDetailsService {
 			return null; // 또는 예외 처리
 		}
 	}
-    public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	public PasswordEncoder passwordEncoder() {
+	    return PasswordEncoderFactories.createDelegatingPasswordEncoder();
       }
+    
 	
 }

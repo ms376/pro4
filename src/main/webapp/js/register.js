@@ -88,11 +88,11 @@ async function registerDoc() {
 			return;
 		}
 	});
-
+	 const hashedPw = await sha256(pw);
 	var postData = {
 		id: id,
 		name: name,
-		pw: pw,
+		pw: hashedPw,
 		birth: birth,
 		sex: sex,
 		nickname: nickname,
@@ -121,33 +121,79 @@ async function selectmemberDoc() {
 		appendMessage(data.id + " - " + data.pw + " : " + data.name + " : " + data.email + " : " + data.sex + " : " + data.nickname + " : " + data.birth + " : " + data.address + " : " + data.rank + " : " + data.interest + " : " + data.phone);
 	});
 }
+
+function sha256(input) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(input);
+  return crypto.subtle.digest('SHA-256', data)
+    .then(buffer => {
+      const hashArray = Array.from(new Uint8Array(buffer));
+      const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+      return hashHex;
+    });
+}
+//// 로그인
+//async function loginDoc() {
+//	console.log("ddd");
+//	var id = $('#idInput').val();
+//	var pw = $('#passwordInput').val();
+//	let loggedInUser = null; // 세션에 저장할 사용자 정보
+//
+//	try {
+//		const querySnapshot = await getDocs(collection(db, "members"));
+//
+//		querySnapshot.forEach((doc) => {
+//			const data = doc.data();
+//			if (data.id === id && data.pw === pw) {
+//				loggedInUser = data; // 로그인 성공한 사용자 정보 저장
+//				sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+//				alert("로그인 성공! 사용자: " + data.id);
+////				window.location.href = '/';
+//			}
+//		});
+//
+//		if (!loggedInUser) {
+//			alert('로그인 실패: 아이디나 비밀번호를 정확히 입력해주세요.');
+//		}
+//	} catch (error) {
+//		console.error("로그인 중 오류 발생: " + error);
+//	}
+//}
 // 로그인
 async function loginDoc() {
-	console.log("ddd");
-	var id = $('#idInput').val();
-	var pw = $('#passwordInput').val();
-	let loggedInUser = null; // 세션에 저장할 사용자 정보
+    console.log("ddd");
+    var id = $('#idInput').val();
+    var pw = $('#passwordInput').val();
+    let loggedInUser = null; // 세션에 저장할 사용자 정보
 
-	try {
-		const querySnapshot = await getDocs(collection(db, "members"));
+    try {
+        const querySnapshot = await getDocs(collection(db, "members"));
 
-		querySnapshot.forEach((doc) => {
-			const data = doc.data();
-			if (data.id === id && data.pw === pw) {
-				loggedInUser = data; // 로그인 성공한 사용자 정보 저장
-				sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
-				alert("로그인 성공! 사용자: " + data.id);
-//				window.location.href = '/';
-			}
-		});
+        querySnapshot.forEach(async (doc) => {
+            const data = doc.data();
+            if (data.id === id) {
+                // 사용자를 찾았을 때, 입력된 비밀번호를 SHA-256 해싱
+                const hashedInputPw = await sha256(pw);
+                if (hashedInputPw === data.pw) {
+                    loggedInUser = data; // 로그인 성공한 사용자 정보 저장
+                    sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+                    alert("로그인 성공! 사용자: " + data.id);
+                    // 로그인 성공 후 리디렉션 또는 다른 작업 수행
+                } else {
+                    alert("로그인 실패: 비밀번호가 일치하지 않습니다.");
+                }
+                return;
+            }
+        });
 
-		if (!loggedInUser) {
-			alert('로그인 실패: 아이디나 비밀번호를 정확히 입력해주세요.');
-		}
-	} catch (error) {
-		console.error("로그인 중 오류 발생: " + error);
-	}
+        if (!loggedInUser) {
+            alert('로그인 실패: 아이디를 찾을 수 없습니다.');
+        }
+    } catch (error) {
+        console.error("로그인 중 오류 발생: " + error);
+    }
 }
+
 
 // 로그인 세션스토리지 초기화(로그아웃)
 function appendMessage(msg) {
