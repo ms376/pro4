@@ -34,3 +34,4 @@ function fetchDataAndFillTable(tableId, collectionName) {
 fetchDataAndFillTable('table-body', 'boards');
 fetchDataAndFillTable('table-body2', 'dongboards');
 fetchDataAndFillTable('table-body3', 'freeboards');
+fetchDataAndFillTable('table-body4', 'reviewboards');
