@@ -34,6 +34,7 @@ public class WebSecurityConfig {
 						.requestMatchers("/freeboard").permitAll()
 						.requestMatchers("/register").permitAll()
 						.requestMatchers("/findpro").permitAll()
+						.requestMatchers("/findpro2").permitAll()
 						.requestMatchers("/fail").permitAll()
 						// 정적 리소스(static하위) 에는 권한없이 접근할 수 있다.
 						.requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
@@ -44,21 +45,6 @@ public class WebSecurityConfig {
 						.requestMatchers("/ad2").hasRole("ADMIN") // ADMIN만 허용
 						.requestMatchers("/ad3").hasRole("ADMIN") // ADMIN만 허용
 						.requestMatchers("/**").hasAnyRole("USER", "ADMIN") // 두권한 허용
-//						.requestMatchers("/club").hasAnyRole("USER", "ADMIN") // 두권한 허용
-//						.requestMatchers("/review").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-//						.requestMatchers("/inte").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-//						.requestMatchers("/wrtb").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-//						.requestMatchers("/writeform").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-//						.requestMatchers("/viewboard").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-//						.requestMatchers("/editboard").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-//						.requestMatchers("/register").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-//						.requestMatchers("/uploadForm").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-//						.requestMatchers("/free").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-//						.requestMatchers("/ques").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-//						.requestMatchers("/mypage").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-//						.requestMatchers("/prf").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-//						.requestMatchers("/profileC").hasAnyRole("USER", "ADMIN") // 두권한만 허용
-						// ADMIN 권한 만 접근할 수 있다.
 				);
 
 		// 로그인 페이지 설정(세큐리티의 디폴트 페이지를 사용한다.)

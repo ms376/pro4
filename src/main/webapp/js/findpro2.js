@@ -16,18 +16,20 @@ var db = getFirestore(app);
 
 const emailForm = document.getElementById('emailForm');
 const emailInput = document.getElementById('emailInput');
+const idInput = document.getElementById('idInput');
 const resultDiv = document.getElementById('result');
 
 emailForm.addEventListener('submit', async (e) => {
 	e.preventDefault();
 
 	const email = emailInput.value;
+	const id = idInput.value;
 
 	// "members" 컬렉션에 대한 참조
 	const membersCollection = collection(db, 'members');
 
 	// 일치하는 이메일을 가진 문서를 찾기 위한 쿼리 생성
-	const query1 = query(membersCollection, where('email', '==', email));
+	const query1 = query(membersCollection, where('email', '==', email) , where('id', '==', id));
 
 	try {
 		const querySnapshot = await getDocs(query1);
@@ -36,7 +38,7 @@ emailForm.addEventListener('submit', async (e) => {
 				const data = doc.data();
 				const id = data.id;
 				const pw = data.pw;
-				resultDiv.innerHTML = `ID: ${id} `;
+				resultDiv.innerHTML = `아이디: ${id}, <br>비밀번호: ${pw} <br><br>비밀번호는 내정보란에서 변경해주세요.`;
 			});
 		} else {
 			resultDiv.innerHTML = '일치하는 이메일이 없습니다.';

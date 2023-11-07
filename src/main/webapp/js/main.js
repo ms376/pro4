@@ -22,7 +22,7 @@ function fetchDataAndFillTable(tableId, collectionName) {
         tableBody.innerHTML = ''; // 기존 내용을 초기화
         querySnapshot.forEach((doc) => {
             const data = doc.data();
-            const { id, title, postdate } = data;
+            const { id, title } = data;
             const tableRow = `<tr>
                                  <td>${id}&nbsp;&nbsp;&nbsp;${title}</td>
                                </tr>`;

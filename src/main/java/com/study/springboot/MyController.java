@@ -40,11 +40,17 @@ public class MyController {
 		return "login_fail";
 	}
 
-	// 로그인 -가입정보찾기
+	// 로그인 -가입정보찾기 - id
 	@RequestMapping("/findpro")
 	public String Loginfindpro() {
 
 		return "login_findpro";
+	}
+	// 로그인 -가입정보찾기 - pw
+	@RequestMapping("/findpro2")
+	public String Loginfindpro2() {
+		
+		return "login_findpro2";
 	}
 
 // ---------------------내정보수정-------------------------

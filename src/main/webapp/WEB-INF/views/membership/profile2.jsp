@@ -146,7 +146,6 @@
                         if (userData) {
                             var user = JSON.parse(userData);
                             var id = user.id;
-                            var pw = user.pw;
                             var name = user.name;
                             var nickname = user.nickname;
                             var address = user.address;
@@ -159,7 +158,6 @@
 
                             document.getElementById("lid").textContent = id;
                             document.getElementById("lpw").textContent = pw;
-                            document.getElementById("lname").textContent = name;
                             document.getElementById("lnick").textContent = nickname;
                             document.getElementById("laddr").textContent = address;
                             document.getElementById("laddrd").textContent
@@ -185,7 +183,6 @@
                 <form id="updateForm" class="profile-info">
                     <label for="username">아이디: <span id="lid"></span></label>
                     <label for="name">실명: <span id="lname"></span></label>
-                    <label for="password">기존 비밀번호: <span id="lpw"></span></label>
                     <label for="newPassword">새 비밀번호: <input type="password" id="newpw" class="pw"></label>
                     <label for="newPasswordConfirm">비밀번호 재확인: <input type="password" id="newpwChk" class="pw"><span id="checkPw"></span></label>
                     <script>

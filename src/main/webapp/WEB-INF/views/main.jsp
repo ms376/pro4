@@ -58,34 +58,30 @@
 													.log("세션 스토리지에서 user 데이터를 찾을 수 없습니다.");
 										}
 									});
-				</script>
-							<script>
-document.addEventListener('DOMContentLoaded', function () {
-    var loggedInUser = sessionStorage.getItem("loggedInUser");
-    var navList = document.getElementById('tnb_index');
+			document.addEventListener('DOMContentLoaded', function () {
+   			 var loggedInUser = sessionStorage.getItem("loggedInUser");
+    			var navList = document.getElementById('tnb_index');
     
-    if (!loggedInUser) {
-        // 만약 로그인 데이터가 없다면, 원하는 HTML을 생성하여 출력합니다.
-        navList.innerHTML = `
-            <ul>
-                <li><a href="/register"><i class="fa fa-user-plus" aria-hidden="true"></i> 회원가입</a></li>
-                <li><a href="/login"><i class="fas fa-sign-in-alt"></i> 로그인</a></li>
-            </ul>
-        `;
-    } else {
-        // 로그인 데이터가 있다면, 다른 처리를 할 수 있습니다.
-        // 예를 들어, 사용자 이름을 출력하거나 추가적인 메뉴를 제공할 수 있습니다.
-        navList.innerHTML = `
-            <ul>
-                <li><a href="/mypage"><i class="fas fa-sign-in-alt"></i>내정보 <label id="lnick" style="color: red;"></label></a></li>
-                <li><a href="javascript:void(0);" onclick="logoutDoc()"><i class="fas fa-sign-in-alt"></i>로그아웃</a></li>
-            </ul>
-         `;
-    }
-    // ... (기존의 코드는 그대로 유지)
-});
-</script>
-							<script>
+    			if (!loggedInUser) {
+        			// 만약 로그인 데이터가 없다면, 원하는 HTML을 생성하여 출력합니다.
+        			navList.innerHTML = `
+           			 <ul>
+             			   <li><a href="/register"><i class="fa fa-user-plus" aria-hidden="true"></i> 회원가입</a></li>
+            			    <li><a href="/login"><i class="fas fa-sign-in-alt"></i> 로그인</a></li>
+           			 </ul>
+   			     `;
+ 			   } else {
+   			     // 로그인 데이터가 있다면, 다른 처리를 할 수 있습니다.
+     			   // 예를 들어, 사용자 이름을 출력하거나 추가적인 메뉴를 제공할 수 있습니다.
+    			    navList.innerHTML = `
+       			     <ul>
+        			        <li><a href="/mypage"><i class="fas fa-sign-in-alt"></i>내정보 <label id="lnick" style="color: red;"></label></a></li>
+       			         <li><a href="javascript:void(0);" onclick="logoutDoc()"><i class="fas fa-sign-in-alt"></i>로그아웃</a></li>
+        			   </ul>
+ 			        `;
+			    }
+			});
+		
 								// 로그인 세션스토리지 초기화(로그아웃)
 								async
 								function logoutDoc() {
@@ -229,8 +225,8 @@ document.addEventListener('DOMContentLoaded', function () {
 				<div class="row">
 					<div class="col-md-12 main_one_title ks4">공지사항</div>
 				</div>
-				<a href="/noticeboard" class="one_more"> <span class="sound_only"></span> <i
-					class="fa fa-plus" aria-hidden="true"
+				<a href="/noticeboard" class="one_more"> <span
+					class="sound_only"></span> <i class="fa fa-plus" aria-hidden="true"
 					style="font-size: 22px; line-height: 1px;"></i> <span
 					class="sound_only"> 더보기</span></a>
 				<div class="lat_list_one">
@@ -270,8 +266,8 @@ document.addEventListener('DOMContentLoaded', function () {
 				<div class="row">
 					<div class="col-md-12 main_one_title ks4">자유게시판</div>
 				</div>
-				<a href="/freeboard" class="one_more"> <span class="sound_only"></span> <i
-					class="fa fa-plus" aria-hidden="true"
+				<a href="/freeboard" class="one_more"> <span class="sound_only"></span>
+					<i class="fa fa-plus" aria-hidden="true"
 					style="font-size: 22px; line-height: 1px;"></i> <span
 					class="sound_only"> 더보기</span></a>
 				<div class="lat_list_one">
@@ -288,14 +284,17 @@ document.addEventListener('DOMContentLoaded', function () {
 				<div class="row">
 					<div class="col-md-12 main_one_title ks4">후기/리뷰</div>
 				</div>
-				<a class="one_more"><span class="sound_only">게시판4</span><i
+				<a class="/review"><span class="sound_only">게시판4</span><i
 					class="fa fa-plus" aria-hidden="true"
 					style="font-size: 22px; line-height: 1px;"></i><span
 					class="sound_only"> 더보기</span></a>
 				<div class="lat_list_one">
 					<ul>
-						<li class="ks4"><a href="#">동아리동아리동아리4</a> <span
-							class="lt_date hidden-xs hidden-sm">09-27</span></li>
+						<table>
+							<thead>
+							<tbody id="table-body4">
+							</tbody>
+						</table>
 					</ul>
 				</div>
 			</div>
@@ -310,7 +309,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			<div class="row">
 				<div class="col-md-12 text-white text-center">
 					<h2 class="en1">
-<!-- 					<a href="https://kr.freepik.com/free-vector/hand-drawn-flat-design-people-waving-illustration_21559261.htm#query=%EB%8F%99%EC%95%84%EB%A6%AC&position=0&from_view=search&track=sph">작가 pikisuperstar</a> 출처 Freepik -->
+						<!-- 					<a href="https://kr.freepik.com/free-vector/hand-drawn-flat-design-people-waving-illustration_21559261.htm#query=%EB%8F%99%EC%95%84%EB%A6%AC&position=0&from_view=search&track=sph">작가 pikisuperstar</a> 출처 Freepik -->
 						<img src="img/mam.png">
 					</h2>
 					<!-- image or text  -->

@@ -33,15 +33,6 @@ public class FirebaseUserDetailsService implements UserDetailsService {
 		firebase.initializeFirebaseApp();
 		
 		try {
-//			DocumentReference mm = FirestoreClient.getFirestore().collection("members")
-//				    .whereEqualTo("id", username) // id 필드의 값이 username과 일치하는 문서 검색
-//				    .get()
-//				    .get()
-//				    .getDocuments()
-//				    .get(0).getReference();
-			// Firebase Admin SDK를 사용하여 Firestore에 연결
-			
-			// Firebase 앱 가져오기
 			FirebaseApp firebaseApp = FirebaseApp.getInstance();
 			// Firestore 클라이언트 초기화
 			Firestore db = FirestoreClient.getFirestore(firebaseApp);
@@ -59,7 +50,6 @@ public class FirebaseUserDetailsService implements UserDetailsService {
 			// 해당 문서에 대한 DocumentReference 가져오기
 			DocumentReference docRef = document.getReference();
 			System.out.println(docRef);
-//			DocumentReference docRef = FirestoreClient.getFirestore().collection("members").document(username);
 
 			// Firestore 문서 가져오기
 			DocumentSnapshot doc = docRef.get().get();
